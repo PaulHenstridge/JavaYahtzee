@@ -2,14 +2,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import Dice.Dice;
+import Dice.YahtzeeDiceController;
+
+import java.util.List;
 
 public class DiceTest {
 
     @Test
     public void TestCanRollSingleDie() {
+        // Arrange
         Dice Dice = new Dice();
+        // Act
         for (int i = 0; i < 1000; i++) {
-            int roll = Dice.roll();
+            Dice.roll();
+            int roll = Dice.getValue();
+            // Assert
             assertTrue("Roll out of bounds: " + roll, roll >= 1 && roll <= 6);
         }
     }
@@ -17,35 +24,63 @@ public class DiceTest {
     @Test
     public void TestCanRollFiveDice() {
         // Arrange
-        // ... code to set up test scenario ...
+        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
 
         // Act
-        // ... code to invoke the behavior to test ...
-
-        // Assert
-        // ... code to check the result ...
+        for (int i = 0; i < 100; i++) {
+            YahtzeeDice.rollDice();
+            List<Integer> result = YahtzeeDice.getDiceValues();
+            // Assert
+            assertTrue(result.size() == 5);
+        }
     }
+
     @Test
     public void TestDiceCanBeHeld() {
         // Arrange
-        // ... code to set up test scenario ...
+        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
 
-        // Act
-        // ... code to invoke the behavior to test ...
+        //Act
+        for (int i = 0; i < 100; i++) {
+            YahtzeeDice.resetHolds();
+            YahtzeeDice.rollDice();
+            System.out.println(YahtzeeDice.getDiceValues());
+            YahtzeeDice.holdDice(0);
+            YahtzeeDice.holdDice(1);
+            Integer firstHeldVal = YahtzeeDice.getDiceValues().get(0);
+            Integer secondHeldVal = YahtzeeDice.getDiceValues().get(1);
+            YahtzeeDice.rollDice();
+            List<Integer> result = YahtzeeDice.getDiceValues();
+            System.out.println(result);
+            Integer firstRetainedVal = YahtzeeDice.getDiceValues().get(0);
+            Integer secondRetainedVal = YahtzeeDice.getDiceValues().get(1);
 
-        // Assert
-        // ... code to check the result ...
-
+            // Assert
+            assertTrue(firstHeldVal == firstRetainedVal && secondHeldVal == secondRetainedVal);
+        }
     }
+
     @Test
     public void TestDiceCanBeUnheld() {
         // Arrange
-        // ... code to set up test scenario ...
+        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
 
-        // Act
-        // ... code to invoke the behavior to test ...
+        //Act
+        for (int i = 0; i < 100; i++) {
+            YahtzeeDice.resetHolds();
+            YahtzeeDice.rollDice();
+            List<Dice> currentDice = YahtzeeDice.getDiceList();
+            for (int j = 0; j < currentDice.size(); j++) {
+                YahtzeeDice.holdDice(j);
+            }
+            List<Integer> firstSpin = YahtzeeDice.getDiceValues();
+            System.out.println(firstSpin);
+            YahtzeeDice.rollDice();
+            System.out.println(YahtzeeDice.getDiceValues());
 
-        // Assert
-        // ... code to check the result ...
+            // Assert
+            assertNotSame(firstSpin, YahtzeeDice.getDiceValues());
+            // ... code to check the result ...
+        }
     }
 }

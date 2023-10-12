@@ -1,11 +1,13 @@
 package Dice;
-
-import java.util.Random;
-
 public class Dice {
-    private Random random = new Random();
+    private int value;
 
-    public int roll() {
-        return random.nextInt(6) + 1;
+    public void roll() {
+        this.value = (int) (Math.random() * 6) + 1;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
+
