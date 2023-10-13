@@ -1,10 +1,33 @@
 package Scoring;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lower {
 
-    public int threeOfaKind(List<Integer> diceRoll){
+    public int checkNumberOfAKind(List<Integer> diceRoll, Integer ofAKind) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
 
+        // Count the frequency of each die value
+        for (Integer value : diceRoll) {
+            frequencyMap.put(value, frequencyMap.getOrDefault(value, 0) + 1);
+        }
+
+        // Check for a three-of-a-kind and calculate the score
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() == ofAKind) {
+                return entry.getKey() * ofAKind;
+            }
+        }
+
+        return 0;  // Return 0 if there is no x-of-a-kind
+    }
+
+    public int checkYahtzee(List<Integer> diceRoll){
+        if(diceRoll.stream().allMatch(num -> num.equals(diceRoll.get(0)))){
+            return 50;
+        }
+        return 0;
     }
 }

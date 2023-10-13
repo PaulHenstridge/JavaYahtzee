@@ -76,11 +76,50 @@ public class ScoringTest {
 
     @Test
     public void TestThreeOfaKind(){
-        //Arrange (roll3 correct, roll 4 wrong)
-        assertEquals(15, lowerScoring.threeOfaKind(roll3));
-        //Act
+        //Arrange
+        assertEquals(15, lowerScoring.checkNumberOfAKind(roll3, 3));
+    }
+    @Test
+    public void TestThreeOfaKindFailing(){
+        //Arrange
+        assertNotEquals(15, lowerScoring.checkNumberOfAKind(roll4, 3));
+        assertEquals(0, lowerScoring.checkNumberOfAKind(roll4, 3));
+    }
+    @Test
+    public void TestFourOfaKind(){
+        //Arrange
+        assertEquals(12, lowerScoring.checkNumberOfAKind(roll5, 4));
+    }
+    @Test
+    public void TestFourOfaKindFailing(){
+        //Arrange
+        assertNotEquals(15, lowerScoring.checkNumberOfAKind(roll6, 4));
+        assertEquals(0, lowerScoring.checkNumberOfAKind(roll6, 4));
+    }
+    @Test
+    public void TestFullHouse(){
 
-        //Assert
+    }
+    @Test
+    public void TestSmallStraight(){
+
+    }
+    @Test
+    public void TestLargeStraight(){
+
+    }
+    @Test
+    public void TestYahtzee(){
+        assertEquals(50, lowerScoring.checkYahtzee(roll2));
+    }
+    @Test
+    public void Failing(){
+        assertNotEquals(50, lowerScoring.checkYahtzee(roll1));
+    }
+
+    @Test
+    public void TestChance(){
+
     }
 
 }
