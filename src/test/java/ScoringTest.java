@@ -98,7 +98,11 @@ public class ScoringTest {
     }
     @Test
     public void TestFullHouse(){
-
+        assertEquals(25, lowerScoring.checkFullHouse(roll3));
+    }
+    @Test
+    public void TestFullHouseFailing(){
+        assertEquals(0, lowerScoring.checkFullHouse(roll4));
     }
     @Test
     public void TestSmallStraight(){

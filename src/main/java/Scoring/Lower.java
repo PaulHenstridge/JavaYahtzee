@@ -30,4 +30,24 @@ public class Lower {
         }
         return 0;
     }
+
+    public int checkFullHouse(List<Integer> diceRoll){
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+
+        for (Integer value : diceRoll){
+            frequencyMap.put(value, frequencyMap.getOrDefault(value, 0)+1);
+        }
+        boolean hasThreeOfAKind = false;
+        boolean hasTwoOfAKind = false;
+
+        for( Integer frequency : frequencyMap.values()){
+            if (frequency == 3) {
+                hasThreeOfAKind = true;
+            } else if (frequency == 2) {
+                hasTwoOfAKind = true;
+            }
+        }
+        return (hasThreeOfAKind && hasTwoOfAKind) ? 25 : 0;
+
+    }
 }
