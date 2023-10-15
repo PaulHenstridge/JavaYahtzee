@@ -106,24 +106,32 @@ public class ScoringTest {
     }
     @Test
     public void TestSmallStraight(){
-
+        assertEquals(30, lowerScoring.checkSmallStraight(roll6));
+    }
+    @Test
+    public void TestSmallStraightFailing(){
+        assertEquals(0, lowerScoring.checkSmallStraight(roll2));
     }
     @Test
     public void TestLargeStraight(){
-
+        assertEquals(40, lowerScoring.checkLargeStraight(roll1));
+    }
+    @Test
+    public void TestLargeStraightFailing(){
+        assertEquals(0, lowerScoring.checkLargeStraight(roll5));
     }
     @Test
     public void TestYahtzee(){
         assertEquals(50, lowerScoring.checkYahtzee(roll2));
     }
     @Test
-    public void Failing(){
+    public void TestYahtzeeFailing(){
         assertNotEquals(50, lowerScoring.checkYahtzee(roll1));
     }
 
     @Test
     public void TestChance(){
-
+        assertEquals(25, lowerScoring.checkChance(roll2));
     }
 
 }

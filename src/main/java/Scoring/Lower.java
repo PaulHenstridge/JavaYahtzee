@@ -1,10 +1,11 @@
 package Scoring;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Lower {
+
+    private int bonus = 0;
+    private int lowerTotal = 0;
 
     public int checkNumberOfAKind(List<Integer> diceRoll, Integer ofAKind) {
         Map<Integer, Integer> frequencyMap = new HashMap<>();
@@ -48,6 +49,43 @@ public class Lower {
             }
         }
         return (hasThreeOfAKind && hasTwoOfAKind) ? 25 : 0;
+    }
 
+    private static boolean isStraight(Set<Integer> uniqueValues, int start, int end){
+        for( int i = start; i<= end; i++){
+            if(!uniqueValues.contains(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int checkSmallStraight(List<Integer> diceRoll){
+        Set<Integer> uniqueValues = new HashSet<>(diceRoll);
+
+        for( int i = 1; i<=3; i++){
+            if( isStraight(uniqueValues, i, i+3)){
+                return 30;
+            }
+        }
+        return 0;
+    }
+    public int checkLargeStraight(List<Integer> diceRoll){
+        Set<Integer> uniqueValues = new HashSet<>(diceRoll);
+
+        for( int i = 1; i<=2; i++){
+            if( isStraight(uniqueValues, i, i+4)){
+                return 40;
+            }
+        }
+        return 0;
+    }
+
+    public int checkChance(List<Integer> diceRoll){
+        Integer total = 0;
+        for(Integer die : diceRoll){
+            total += die;
+        }
+        return total;
     }
 }

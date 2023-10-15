@@ -5,7 +5,7 @@ import java.util.List;
 public class Upper {
 
     private boolean bonus = false;
-    private int total = 0;
+    private int upperTotal = 0;
 
     // Method to calculate and update the score for the current round
     public int calculateScore(List<Integer> diceValues, int target) {
@@ -18,12 +18,12 @@ public class Upper {
         }
 
         // Update the total score
-        total += scoreForThisRound;
+        upperTotal += scoreForThisRound;
 
         // Check if the bonus condition is met
-        if (total >= 63 && !bonus) {
+        if (upperTotal >= 63 && !bonus) {
             bonus = true;
-            total += 35;  // Assuming the bonus is 35 points
+            upperTotal += 35;  // Assuming the bonus is 35 points
         }
 
         return scoreForThisRound;
@@ -31,7 +31,7 @@ public class Upper {
 
     // Getter for the total score
     public int getTotal() {
-        return total;
+        return upperTotal;
     }
 
     // Getter for the bonus status
