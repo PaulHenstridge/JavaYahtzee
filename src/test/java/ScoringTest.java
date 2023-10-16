@@ -1,4 +1,5 @@
 import Scoring.Lower;
+import Scoring.ScoreKeeper;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,6 +17,8 @@ public class ScoringTest {
     List<Integer> roll5 = Arrays.asList(3,3,3,3,6);
     List<Integer> roll6 = Arrays.asList(1,3,4,5,6);
     Lower lowerScoring = new Lower();
+
+    ScoreKeeper scoreKeeper = new ScoreKeeper();
 
 
     @Test
@@ -133,5 +136,19 @@ public class ScoringTest {
     public void TestChance(){
         assertEquals(25, lowerScoring.checkChance(roll2));
     }
-
+    @Test
+    public void TestScoreKeeperUpper() {
+        scoreKeeper.updateScore(15, ScoreKeeper.Section.UPPER);
+        assertEquals(15, scoreKeeper.getUpperScore());
+    }
+    @Test
+    public void TestScoreKeeperUpperWithBonus() {
+        scoreKeeper.updateScore(65, ScoreKeeper.Section.UPPER);
+        assertEquals(100, scoreKeeper.getUpperScore());
+    }
+    @Test
+    public void TestScoreKeeperLower() {
+        scoreKeeper.updateScore(30, ScoreKeeper.Section.LOWER);
+        assertEquals(30, scoreKeeper.getLowerScore());
+    }
 }
