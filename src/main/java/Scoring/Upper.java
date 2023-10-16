@@ -16,16 +16,6 @@ public class Upper {
                 scoreForThisRound += target;
             }
         }
-
-        // Update the total score
-        upperTotal += scoreForThisRound;
-
-        // Check if the bonus condition is met
-        if (upperTotal >= 63 && !bonus) {
-            bonus = true;
-            upperTotal += 35;  // Assuming the bonus is 35 points
-        }
-
         return scoreForThisRound;
     }
 
