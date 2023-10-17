@@ -25,12 +25,20 @@ public class ScoreKeeper {
 
     public void updateScore(int score, Section section, Enum<?> category) {
         if (section == Section.UPPER) {
-            upperScores.put((UpperCategory) category, score);
-            upperScore += score;
-            checkForUpperBonus();
+            UpperCategory upperCategory = (UpperCategory) category;
+            if (!upperScores.containsKey(upperCategory)) {
+                upperScores.put(upperCategory, score);
+                upperScore += score;
+                checkForUpperBonus();
+            }
         } else if (section == Section.LOWER) {
-            lowerScores.put((LowerCategory) category, score);
-            lowerScore += score;
+            LowerCategory lowerCategory = (LowerCategory) category;
+            if (!lowerScores.containsKey(lowerCategory)) {
+                lowerScores.put((LowerCategory) category, score);
+                lowerScore += score;
+            } else {
+                // alert user of illegal action
+            }
         }
     }
 

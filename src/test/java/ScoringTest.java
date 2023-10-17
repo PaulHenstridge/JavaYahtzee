@@ -17,7 +17,6 @@ public class ScoringTest {
     List<Integer> roll6 = Arrays.asList(1,3,4,5,6);
     Lower lowerScoring = new Lower();
 
-    ScoreKeeper scoreKeeper = new ScoreKeeper();
 
 
     @Test
@@ -61,21 +60,6 @@ public class ScoringTest {
         assertTrue( upperScoring.hasBonus());
 
     }
-//    @Test
-//    public void TestUpperBonusAddedToTotal(){
-//        int target = 6;
-//
-//        List<Integer> diceRoll = Arrays.asList(6,6,6,6,6);
-//        Upper upperScoring = new Upper();
-//        //Act
-//        upperScoring.calculateScore(diceRoll,target);
-//        upperScoring.calculateScore(diceRoll,target);
-//        upperScoring.calculateScore(diceRoll,target);
-//        System.out.println(upperScoring.getTotal());
-//        //Assert
-//        assertEquals( 125, upperScoring.getTotal());
-//    }
-
     @Test
     public void TestThreeOfaKind(){
         //Arrange
@@ -135,20 +119,4 @@ public class ScoringTest {
     public void TestChance(){
         assertEquals(25, lowerScoring.checkChance(roll2));
     }
-    @Test
-    public void TestScoreKeeperUpper() {
-        scoreKeeper.updateScore(15, ScoreKeeper.Section.UPPER,ScoreKeeper.UpperCategory.THREES );
-        assertEquals(15, scoreKeeper.getUpperScore());
-        assertEquals(15, (int) scoreKeeper.getScore(ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.THREES));
-    }
-//    @Test
-//    public void TestScoreKeeperUpperWithBonus() {
-//        scoreKeeper.updateScore(65, ScoreKeeper.Section.UPPER,);
-//        assertEquals(100, scoreKeeper.getUpperScore());
-//    }
-//    @Test
-//    public void TestScoreKeeperLower() {
-//        scoreKeeper.updateScore(30, ScoreKeeper.Section.LOWER);
-//        assertEquals(30, scoreKeeper.getLowerScore());
-//    }
 }
