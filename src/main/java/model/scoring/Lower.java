@@ -1,4 +1,4 @@
-package Scoring;
+package model.scoring;
 
 import java.util.*;
 

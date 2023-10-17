@@ -1,4 +1,4 @@
-package Dice;
+package model.dice;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Dice;
+package model.dice;
 public class Dice {
     private int value;
 

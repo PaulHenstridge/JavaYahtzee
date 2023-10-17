@@ -1,4 +1,4 @@
-package Scoring;
+package model.scoring;
 
 import java.util.List;
 
@@ -9,14 +9,13 @@ public class Upper {
 
     // Method to calculate and update the score for the current round
     public int calculateScore(List<Integer> diceValues, int target) {
-        int scoreForThisRound = 0;
 
         for (int value : diceValues) {
             if (value == target) {
-                scoreForThisRound += target;
+                upperTotal += target;
             }
         }
-        return scoreForThisRound;
+        return upperTotal;
     }
 
     // Getter for the total score

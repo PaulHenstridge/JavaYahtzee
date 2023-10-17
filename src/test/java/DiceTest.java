@@ -1,8 +1,8 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import Dice.Dice;
-import Dice.YahtzeeDiceController;
+import model.dice.Dice;
+import model.dice.YahtzeeDiceController;
 
 import java.util.List;
 
