@@ -1,7 +1,9 @@
 import model.scoring.ScoreKeeper;
+import model.scoring.UpdateStatus;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ScoreKeeperTest {
 
@@ -40,5 +42,20 @@ public class ScoreKeeperTest {
         scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
 
         assertEquals(30, scoreKeeper.getUpperScore());
+    }
+
+    @Test
+    public void TestCategoryReturnsSuccessStatus(){
+        UpdateStatus status = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+
+        assertTrue(status.isSuccess());
+
+    }
+    @Test
+    public void TestDuplicateCategoryReturnsErrorMessage(){
+        UpdateStatus status = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+        UpdateStatus newStatus = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+
+        assertEquals("Score already entered for this category", newStatus.getErrorMessage());
     }
 }

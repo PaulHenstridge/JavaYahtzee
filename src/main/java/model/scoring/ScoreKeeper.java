@@ -23,23 +23,31 @@ public class ScoreKeeper {
         THREE_OF_A_KIND, FOUR_OF_A_KIND, FULL_HOUSE, SMALL_STRAIGHT, LARGE_STRAIGHT, YAHTZEE, CHANCE
     }
 
-    public void updateScore(int score, Section section, Enum<?> category) {
+    public UpdateStatus updateScore(int score, Section section, Enum<?> category) {
+        UpdateStatus status = new UpdateStatus();
         if (section == Section.UPPER) {
             UpperCategory upperCategory = (UpperCategory) category;
             if (!upperScores.containsKey(upperCategory)) {
                 upperScores.put(upperCategory, score);
                 upperScore += score;
+                status.setSuccess(true);
                 checkForUpperBonus();
+            } else {
+                status.setSuccess(false);
+                status.setErrorMessage("Score already entered for this category");
             }
         } else if (section == Section.LOWER) {
             LowerCategory lowerCategory = (LowerCategory) category;
             if (!lowerScores.containsKey(lowerCategory)) {
                 lowerScores.put((LowerCategory) category, score);
                 lowerScore += score;
+                status.setSuccess(true);
             } else {
-                // alert user of illegal action
+                status.setSuccess(false);
+                status.setErrorMessage("Score already entered for this category");
             }
         }
+        return status;
     }
 
     private void checkForUpperBonus() {
