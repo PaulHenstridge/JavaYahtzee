@@ -44,14 +44,12 @@ public class DiceTest {
         for (int i = 0; i < 100; i++) {
             YahtzeeDice.resetHolds();
             YahtzeeDice.rollDice();
-            System.out.println(YahtzeeDice.getDiceValues());
             YahtzeeDice.holdDice(0);
             YahtzeeDice.holdDice(1);
             Integer firstHeldVal = YahtzeeDice.getDiceValues().get(0);
             Integer secondHeldVal = YahtzeeDice.getDiceValues().get(1);
             YahtzeeDice.rollDice();
             List<Integer> result = YahtzeeDice.getDiceValues();
-            System.out.println(result);
             Integer firstRetainedVal = YahtzeeDice.getDiceValues().get(0);
             Integer secondRetainedVal = YahtzeeDice.getDiceValues().get(1);
 
@@ -74,13 +72,11 @@ public class DiceTest {
                 YahtzeeDice.holdDice(j);
             }
             List<Integer> firstSpin = YahtzeeDice.getDiceValues();
-            System.out.println(firstSpin);
             YahtzeeDice.rollDice();
-            System.out.println(YahtzeeDice.getDiceValues());
 
             // Assert
             assertNotSame(firstSpin, YahtzeeDice.getDiceValues());
-            // ... code to check the result ...
+
         }
     }
 }

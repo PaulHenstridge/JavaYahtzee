@@ -1,3 +1,4 @@
+import model.YahtzeeEnums;
 import model.scoring.ScoreKeeper;
 import model.scoring.UpdateStatus;
 import org.junit.Test;
@@ -12,9 +13,9 @@ public class ScoreKeeperTest {
 
     @Test
     public void TestScoreKeeperUpper() {
-        scoreKeeper.updateScore(15, ScoreKeeper.Section.UPPER,ScoreKeeper.UpperCategory.THREES );
+        scoreKeeper.updateScore(15, YahtzeeEnums.Section.UPPER,YahtzeeEnums.UpperCategory.THREES );
         assertEquals(15, scoreKeeper.getUpperScore());
-        assertEquals(15, (int) scoreKeeper.getScore(ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.THREES));
+        assertEquals(15, (int) scoreKeeper.getScore(YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.THREES));
     }
 //    @Test
 //    public void TestScoreKeeperUpperWithBonus() {
@@ -29,32 +30,32 @@ public class ScoreKeeperTest {
 
     @Test
     public void TestUpperBonusAddedToTotal(){
-        scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
-        scoreKeeper.updateScore(25, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.FIVES);
-        scoreKeeper.updateScore(20, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.FOURS);
+        scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
+        scoreKeeper.updateScore(25, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.FIVES);
+        scoreKeeper.updateScore(20, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.FOURS);
 
         assertEquals(110, scoreKeeper.getUpperScore());
     }
 
     @Test
     public void TestCategoriesNotUsedMoreThanOnce(){
-        scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
-        scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+        scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
+        scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
 
         assertEquals(30, scoreKeeper.getUpperScore());
     }
 
     @Test
     public void TestCategoryReturnsSuccessStatus(){
-        UpdateStatus status = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+        UpdateStatus status = scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER,YahtzeeEnums.UpperCategory.SIXES);
 
         assertTrue(status.isSuccess());
 
     }
     @Test
     public void TestDuplicateCategoryReturnsErrorMessage(){
-        UpdateStatus status = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
-        UpdateStatus newStatus = scoreKeeper.updateScore(30, ScoreKeeper.Section.UPPER, ScoreKeeper.UpperCategory.SIXES);
+        UpdateStatus status = scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
+        UpdateStatus newStatus = scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
 
         assertEquals("Score already entered for this category", newStatus.getErrorMessage());
     }

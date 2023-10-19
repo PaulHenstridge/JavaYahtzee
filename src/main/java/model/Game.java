@@ -23,10 +23,10 @@ public class Game {
         this.scoreKeeper = scoreKeeper;
     }
 
-    public boolean scoreUpper(ScoreKeeper.UpperCategory category){
+    public boolean scoreUpper(YahtzeeEnums.UpperCategory category){
         int diceVal = category.getDiceVal();
         int score = upper.calculateScore(dice.getDiceValues(), diceVal);
-        UpdateStatus status = scoreKeeper.updateScore(score,ScoreKeeper.Section.UPPER, category);
+        UpdateStatus status = scoreKeeper.updateScore(score,YahtzeeEnums.Section.UPPER, category);
         return status.isSuccess();
     }
 

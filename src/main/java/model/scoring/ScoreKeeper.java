@@ -1,42 +1,23 @@
 package model.scoring;
 
+import model.YahtzeeEnums;
+
 import java.util.EnumMap;
 import java.util.Map;
 
 public class ScoreKeeper {
 
-    private Map<UpperCategory, Integer> upperScores = new EnumMap<>(UpperCategory.class);
-    private Map<LowerCategory, Integer> lowerScores = new EnumMap<>(LowerCategory.class);
+    private Map<YahtzeeEnums.UpperCategory, Integer> upperScores = new EnumMap<>(YahtzeeEnums.UpperCategory.class);
+    private Map<YahtzeeEnums.LowerCategory, Integer> lowerScores = new EnumMap<>(YahtzeeEnums.LowerCategory.class);
     private int upperScore = 0;
     private int lowerScore = 0;
     private boolean upperBonus = false;
 
-    public enum Section {
-        UPPER, LOWER
-    }
 
-    public enum UpperCategory {
-        ONES(1), TWOS(2), THREES(3), FOURS(4), FIVES(5), SIXES(6);
-
-        private final int diceVal;
-
-        UpperCategory(int diceVal) {
-            this.diceVal = diceVal;
-        }
-
-        public int getDiceVal() {
-            return diceVal;
-        }
-    }
-
-    public enum LowerCategory {
-        THREE_OF_A_KIND, FOUR_OF_A_KIND, FULL_HOUSE, SMALL_STRAIGHT, LARGE_STRAIGHT, YAHTZEE, CHANCE
-    }
-
-    public UpdateStatus updateScore(int score, Section section, Enum<?> category) {
+    public UpdateStatus updateScore(int score, YahtzeeEnums.Section section, Enum<?> category) {
         UpdateStatus status = new UpdateStatus();
-        if (section == Section.UPPER) {
-            UpperCategory upperCategory = (UpperCategory) category;
+        if (section == YahtzeeEnums.Section.UPPER) {
+            YahtzeeEnums.UpperCategory upperCategory = (YahtzeeEnums.UpperCategory) category;
             if (!upperScores.containsKey(upperCategory)) {
                 upperScores.put(upperCategory, score);
                 upperScore += score;
@@ -46,10 +27,10 @@ public class ScoreKeeper {
                 status.setSuccess(false);
                 status.setErrorMessage("Score already entered for this category");
             }
-        } else if (section == Section.LOWER) {
-            LowerCategory lowerCategory = (LowerCategory) category;
+        } else if (section == YahtzeeEnums.Section.LOWER) {
+            YahtzeeEnums.LowerCategory lowerCategory = (YahtzeeEnums.LowerCategory) category;
             if (!lowerScores.containsKey(lowerCategory)) {
-                lowerScores.put((LowerCategory) category, score);
+                lowerScores.put((YahtzeeEnums.LowerCategory) category, score);
                 lowerScore += score;
                 status.setSuccess(true);
             } else {
@@ -79,7 +60,7 @@ public class ScoreKeeper {
         return upperBonus;
     }
 
-    public Integer getScore(Section section, Enum<?> category) {
-        return section == Section.UPPER ? upperScores.get(category) : lowerScores.get(category);
+    public Integer getScore(YahtzeeEnums.Section section, Enum<?> category) {
+        return section == YahtzeeEnums.Section.UPPER ? upperScores.get(category) : lowerScores.get(category);
     }
 }

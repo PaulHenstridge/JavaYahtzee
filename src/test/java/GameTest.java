@@ -1,4 +1,5 @@
 import model.Game;
+import model.YahtzeeEnums;
 import model.dice.YahtzeeDiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
@@ -28,8 +29,38 @@ public class GameTest {
 
     @Test
     public void TestScoreUpper() {
-        boolean success = game.scoreUpper(ScoreKeeper.UpperCategory.FIVES);
+        boolean success = game.scoreUpper(YahtzeeEnums.UpperCategory.FIVES);
         assertTrue(success);
         assertEquals(15,game.getUpperScore());
     }
+
+    @Test
+    public void TestScoreThreeOfAKind() {
+
+    }
+    @Test
+    public void TestScoreFourOfAKind() {
+
+    }
+        @Test
+    public void TestScoreYahtzee() {
+
+    }
+        @Test
+    public void TestScoreFullHouse() {
+
+    }
+            @Test
+    public void TestScoreSmallStraight() {
+
+    }
+            @Test
+    public void TestScoreLargeStraight() {
+
+    }
+            @Test
+    public void TestScoreChance() {
+
+    }
+
 }
