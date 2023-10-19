@@ -23,21 +23,60 @@ public class Game {
         this.scoreKeeper = scoreKeeper;
     }
 
-    public boolean scoreUpper(YahtzeeEnums.UpperCategory category){
+    public boolean scoreUpper(YahtzeeEnums.UpperCategory category) {
         int diceVal = category.getDiceVal();
         int score = upper.calculateScore(dice.getDiceValues(), diceVal);
-        UpdateStatus status = scoreKeeper.updateScore(score,YahtzeeEnums.Section.UPPER, category);
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.UPPER, category);
         return status.isSuccess();
     }
 
-    public int getUpperScore(){
+    public boolean scoreThreeOfAKind() {
+        int score = lower.checkNumberOfAKind(dice.getDiceValues(), 3);
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.THREE_OF_A_KIND);
+        return status.isSuccess();
+    }
+
+    public boolean scoreFourOfAKind(){
+        int score = lower.checkNumberOfAKind(dice.getDiceValues(), 4);
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.FOUR_OF_A_KIND);
+        return status.isSuccess();
+    }
+   public boolean scoreYahtzee(){
+        int score = lower.checkYahtzee(dice.getDiceValues());
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.YAHTZEE);
+        return status.isSuccess();
+    }
+       public boolean scoreFullHouse(){
+        int score = lower.checkFullHouse(dice.getDiceValues());
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.FULL_HOUSE);
+        return status.isSuccess();
+    }
+          public boolean scoreSmallStraight(){
+        int score = lower.checkSmallStraight(dice.getDiceValues());
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.SMALL_STRAIGHT);
+        return status.isSuccess();
+    }
+          public boolean scoreLargeStraight(){
+        int score = lower.checkLargeStraight(dice.getDiceValues());
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.LARGE_STRAIGHT);
+        return status.isSuccess();
+    }
+          public boolean scoreChance(){
+        int score = lower.checkChance(dice.getDiceValues());
+        UpdateStatus status = scoreKeeper.updateScore(score, YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.CHANCE);
+        return status.isSuccess();
+    }
+
+
+
+
+
+    public int getUpperScore() {
         return scoreKeeper.getUpperScore();
     }
 
+    public ScoreKeeper getScoreKeeper() {
+        return scoreKeeper;
+    }
+
 }
-//This Game class acts as a bridge,
-// encapsulating the game logic and providing a clean,
-// high-level API for the GameController to interact with.
-// This way, the GameController doesn't need to know the details of
-// how scoring or dice rolling is implemented;
-// it just needs to call the appropriate methods on the Game object.

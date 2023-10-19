@@ -15,8 +15,12 @@ public class Lower {
 
         // Check for a three-of-a-kind and calculate the score
         for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
-            if (entry.getValue() == ofAKind) {
-                return entry.getKey() * ofAKind;
+            if (entry.getValue() >= ofAKind) {
+                int totalScore = 0;
+                for(Integer value : diceRoll) {
+                    totalScore += value;
+                }
+                return totalScore;
             }
         }
 
