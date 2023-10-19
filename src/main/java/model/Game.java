@@ -67,12 +67,34 @@ public class Game {
         return status.isSuccess();
     }
 
+    public void rollDice(){
+        dice.rollDice();
+    }
 
+    public List<Integer> getCurrentDice(){
+        return dice.getDiceValues();
+    }
 
+    public Integer getCategoryScore(YahtzeeEnums.Section section, Enum<?> category){
+        return scoreKeeper.getScore(section, category);
+    }
 
+    public void holdDie(int index){
+        dice.holdDice(index);
+    }
+    public void unholdDie(int index){
+        dice.releaseDice(index);
+    }
+
+    public void clearHolds(){
+        dice.resetHolds();
+    }
 
     public int getUpperScore() {
         return scoreKeeper.getUpperScore();
+    }
+    public int getLowerScore() {
+        return scoreKeeper.getLowerScore();
     }
 
     public ScoreKeeper getScoreKeeper() {
