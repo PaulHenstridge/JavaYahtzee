@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Lower {
 
-    private int bonus = 0;
-    private int lowerTotal = 0;
 
     public int checkNumberOfAKind(List<Integer> diceRoll, Integer ofAKind) {
         Map<Integer, Integer> frequencyMap = new HashMap<>();

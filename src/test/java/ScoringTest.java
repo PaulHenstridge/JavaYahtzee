@@ -32,34 +32,7 @@ public class ScoringTest {
         //Assert
         assertEquals(roundScore,15 );
     }
-    @Test
-    public void TestUpperRunningTotal(){
-        int target = 5;
 
-        List<Integer> diceRoll = Arrays.asList(3,5,5,3,5);
-        Upper upperScoring = new Upper();
-        //Act
-        upperScoring.calculateScore(diceRoll,target);
-        upperScoring.calculateScore(diceRoll,target);
-        //Assert
-        assertEquals( 30, upperScoring.getTotal());
-
-    }
-    @Test
-    public void TestUpperHasBonus(){
-        int target = 6;
-
-        List<Integer> diceRoll = Arrays.asList(6,6,6,6,6);
-        Upper upperScoring = new Upper();
-        //Act
-        upperScoring.calculateScore(diceRoll,target);
-        upperScoring.calculateScore(diceRoll,target);
-        upperScoring.calculateScore(diceRoll,target);
-        System.out.println(upperScoring.getTotal());
-        //Assert
-        assertTrue( upperScoring.hasBonus());
-
-    }
     @Test
     public void TestThreeOfaKind(){
         //Arrange
