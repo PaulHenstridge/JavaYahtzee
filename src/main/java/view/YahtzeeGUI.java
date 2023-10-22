@@ -3,8 +3,12 @@ package view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class YahtzeeGUI extends JFrame {
+    List<JLabel> diceLabels = new ArrayList<>();
+
 
     public YahtzeeGUI() {
         setTitle("Yahtzee Game");
@@ -22,6 +26,14 @@ public class YahtzeeGUI extends JFrame {
             dicePanel.add(singleDicePanel);
         }
         mainPanel.add(dicePanel);
+        // Create a panel to hold the roll button
+        JPanel rollButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton rollButton = new JButton("Roll Dice");
+        rollButton.setFont(new Font("Arial", Font.BOLD, 24));
+        rollButtonPanel.add(rollButton);
+
+// Add this panel to the main panel
+        mainPanel.add(rollButtonPanel);
 
         // Create and add category panels
         String[] upperCategories = {"Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"};
@@ -43,15 +55,6 @@ public class YahtzeeGUI extends JFrame {
         setVisible(true);
     }
 
-//    private JPanel createDicePanel() {
-//        JPanel panel = new JPanel(new BorderLayout());
-//        JLabel diceLabel = new JLabel("1", SwingConstants.CENTER);  // Initial dice value is 1
-//        diceLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-//        JButton holdButton = new JButton("Hold");
-//        panel.add(diceLabel, BorderLayout.CENTER);
-//        panel.add(holdButton, BorderLayout.SOUTH);
-//        return panel;
-//    }
 private JPanel createDicePanel() {
     JPanel panel = new JPanel(new BorderLayout());
 
@@ -61,6 +64,7 @@ private JPanel createDicePanel() {
 
     JLabel diceLabel = new JLabel("1", SwingConstants.CENTER);
     diceLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+    diceLabels.add(diceLabel);
 
     // Set a preferred size for diceLabel to make it square
     Dimension squareSize = new Dimension(50, 50);
@@ -134,6 +138,10 @@ private JPanel createDicePanel() {
         bottomPanel.add(messagePanel);
 
         return bottomPanel;
+    }
+
+    public List<JLabel> getDiceLabels() {
+        return diceLabels;
     }
 
     public static void main(String[] args) {
