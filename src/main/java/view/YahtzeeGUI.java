@@ -3,14 +3,21 @@ package view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class YahtzeeGUI extends JFrame {
-    List<JLabel> diceLabels = new ArrayList<>();
+    private List<JLabel> diceLabels = new ArrayList<>();
 
+    private DiceViewManager diceViewManager;
+    private ScoreViewManager scoreViewManager;
 
-    public YahtzeeGUI() {
+    public YahtzeeGUI(DiceViewManager diceViewManager) {
+        this.diceViewManager = diceViewManager;
+//        this.scoreViewManager = scoreViewManager;
+
         setTitle("Yahtzee Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -26,13 +33,19 @@ public class YahtzeeGUI extends JFrame {
             dicePanel.add(singleDicePanel);
         }
         mainPanel.add(dicePanel);
+
         // Create a panel to hold the roll button
         JPanel rollButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton rollButton = new JButton("Roll Dice");
+        rollButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                diceViewManager.rollButtonClicked();
+            }
+        });
         rollButton.setFont(new Font("Arial", Font.BOLD, 24));
         rollButtonPanel.add(rollButton);
 
-// Add this panel to the main panel
         mainPanel.add(rollButtonPanel);
 
         // Create and add category panels
@@ -144,7 +157,4 @@ private JPanel createDicePanel() {
         return diceLabels;
     }
 
-    public static void main(String[] args) {
-        new YahtzeeGUI();
-    }
 }
