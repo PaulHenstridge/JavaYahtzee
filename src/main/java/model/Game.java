@@ -9,7 +9,7 @@ import model.scoring.Upper;
 
 import java.util.List;
 
-public class Game {
+public class Game implements IGame{
     private YahtzeeDiceController dice;
     private Lower lower;
     private Upper upper;
