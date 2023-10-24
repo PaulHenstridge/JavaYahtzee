@@ -5,18 +5,18 @@ import java.util.List;
 
 public class DiceViewManager implements IDiceViewManager {
     private DiceViewListener listener;
-    private List<Integer> diceValues;
+    YahtzeeViewModel viewModel;
 
-    public DiceViewManager(List<Integer> diceValues) {
-        this.diceValues = diceValues;
+    public DiceViewManager(YahtzeeViewModel viewModel) {
+        this.viewModel = viewModel;
     }
 
     @Override
     public void updateDiceValues(List<Integer> newDiceValues) {
-        if (newDiceValues.size() != diceValues.size()) {
-            throw new IllegalArgumentException("Size of newDiceValues must match the number of dice labels");
-        }
-        this.diceValues = newDiceValues;
+//        if (newDiceValues.size() != diceValues.size()) {
+//            throw new IllegalArgumentException("Size of newDiceValues must match the number of dice labels");
+//        }
+//        this.diceValues = newDiceValues;
     }
 
     @Override
@@ -31,10 +31,7 @@ public class DiceViewManager implements IDiceViewManager {
         this.listener = listener;
     }
 
-    public List<Integer> getDiceValues() {
-        return diceValues;
 
-    }
 }
 
 
