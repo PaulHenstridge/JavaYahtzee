@@ -5,8 +5,8 @@ import model.dice.YahtzeeDiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
 import model.scoring.Upper;
-import view.DiceViewManager;
-import view.IDiceViewManager;
+import view.ViewManager;
+import view.IViewManager;
 import view.YahtzeeGUI;
 import view.YahtzeeViewModel;
 
@@ -29,7 +29,10 @@ public class YahtzeeApp {
         // Initialize the view model
         YahtzeeViewModel viewModel = new YahtzeeViewModel(initialDiceValues);
         // Initialize the dice view manager
-        IDiceViewManager diceViewManager = new DiceViewManager( viewModel);
+        IViewManager diceViewManager = new ViewManager( viewModel);
+
+        // set diceViewManager as a listener on viewModel
+        viewModel.addPropertyChangeListener(diceViewManager);
 
 
         // Initialize the controller and pass the Game instance to it

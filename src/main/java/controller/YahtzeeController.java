@@ -1,13 +1,12 @@
 package controller;
 
 import model.IGame;
-import view.DiceViewListener;
-import view.IDiceViewManager;
+import view.ViewListener;
 import view.YahtzeeViewModel;
 
 import java.util.List;
 
-public class YahtzeeController implements DiceViewListener {
+public class YahtzeeController implements ViewListener {
 
     private IGame game;
     private YahtzeeViewModel viewModel;

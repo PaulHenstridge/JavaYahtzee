@@ -1,6 +1,6 @@
 package view;
 
-public interface DiceViewListener {
+public interface ViewListener {
     void onRollButtonClicked();
 
     void onHoldButtonClicked();

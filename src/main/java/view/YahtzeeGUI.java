@@ -11,10 +11,10 @@ import java.util.List;
 public class YahtzeeGUI extends JFrame {
     private List<JLabel> diceLabels = new ArrayList<>();
 
-    private IDiceViewManager diceViewManager;
-    private ScoreViewManager scoreViewManager;
+    private IViewManager diceViewManager;
+   
 
-    public YahtzeeGUI(IDiceViewManager diceViewManager) {
+    public YahtzeeGUI(IViewManager diceViewManager) {
         this.diceViewManager = diceViewManager;
 //        this.scoreViewManager = scoreViewManager;
 

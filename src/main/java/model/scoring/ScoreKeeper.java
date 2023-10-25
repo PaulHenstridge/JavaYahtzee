@@ -1,6 +1,6 @@
 package model.scoring;
 
-import model.YahtzeeEnums;
+import enums.YahtzeeEnums;
 
 import java.util.EnumMap;
 import java.util.Map;

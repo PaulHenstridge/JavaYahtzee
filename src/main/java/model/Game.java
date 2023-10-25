@@ -1,6 +1,6 @@
 package model;
 
-import model.dice.Dice;
+import enums.YahtzeeEnums;
 import model.dice.YahtzeeDiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;

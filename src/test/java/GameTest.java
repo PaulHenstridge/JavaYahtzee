@@ -1,5 +1,5 @@
 import model.Game;
-import model.YahtzeeEnums;
+import enums.YahtzeeEnums;
 import model.dice.YahtzeeDiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;

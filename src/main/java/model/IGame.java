@@ -1,5 +1,6 @@
 package model;
 
+import enums.YahtzeeEnums;
 import model.scoring.ScoreKeeper;
 
 import java.util.List;

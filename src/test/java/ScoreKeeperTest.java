@@ -1,4 +1,4 @@
-import model.YahtzeeEnums;
+import enums.YahtzeeEnums;
 import model.scoring.ScoreKeeper;
 import model.scoring.UpdateStatus;
 import org.junit.Test;
