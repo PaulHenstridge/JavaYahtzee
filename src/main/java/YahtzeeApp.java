@@ -5,16 +5,10 @@ import model.dice.YahtzeeDiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
 import model.scoring.Upper;
-import view.ViewManager;
-import view.IViewManager;
-import view.YahtzeeGUI;
-import view.YahtzeeViewModel;
-
-import java.util.Arrays;
-import java.util.List;
+import view.*;
 
 public class YahtzeeApp {
-    private static List<Integer> initialDiceValues = Arrays.asList(1,1,1,1,1);
+
 
     public static void main(String[] args) {
         // Initialize model components
@@ -26,21 +20,28 @@ public class YahtzeeApp {
         // Initialize the Game (concrete implementation of IGame)
         IGame game = new Game(dice, scoreKeeper, upper, lower);
 
-        // Initialize the view model
-        YahtzeeViewModel viewModel = new YahtzeeViewModel(initialDiceValues);
-        // Initialize the dice view manager
-        IViewManager diceViewManager = new ViewManager( viewModel);
+        // Initialize the view event handler
+        IViewEventHandler eventHandler = new ViewEventHandler();
 
-        // set diceViewManager as a listener on viewModel
-        viewModel.addPropertyChangeListener(diceViewManager);
+        // Initialize the GUI
+        IGUIUpdater gui = new YahtzeeGUI(eventHandler);
+
+        // Initialize the view model
+        YahtzeeViewModel viewModel = new YahtzeeViewModel();
+
+        // Initialize the dice model observer
+        IViewModelObserver modelObserver = new ViewModelObserver( gui, viewModel);
+
+        // set modelObserver as a listener on viewModel
+        viewModel.addPropertyChangeListener(modelObserver);
 
 
         // Initialize the controller and pass the Game instance to it
         YahtzeeController controller = new YahtzeeController(game, viewModel);
 
-        diceViewManager.setDiceViewListener(controller);
+        eventHandler.setViewListener(controller);
 
-        new YahtzeeGUI(diceViewManager);  // Pass the viewManager to the GUI so it can call methods on it
+        new YahtzeeGUI(eventHandler);  // Pass the viewManager to the GUI so it can call methods on it
     }
 
 }

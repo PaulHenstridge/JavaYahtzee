@@ -2,14 +2,14 @@ package view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
 import java.util.List;
 
 public class YahtzeeViewModel {
-    private List<Integer> diceValues;
+    private List<Integer> diceValues = Arrays.asList(1,1,1,1,1);
     private final PropertyChangeSupport support;
 
-    public YahtzeeViewModel(List<Integer> diceValues){
-        this.diceValues = diceValues;
+    public YahtzeeViewModel(){
         support = new PropertyChangeSupport(this);
     }
 
@@ -22,6 +22,8 @@ public class YahtzeeViewModel {
         this.diceValues = newDiceValues;
         support.firePropertyChange("diceValues", oldDiceValues, newDiceValues);
     }
+
+
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);
     }

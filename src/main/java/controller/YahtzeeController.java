@@ -21,7 +21,6 @@ public class YahtzeeController implements ViewListener {
         game.rollDice();
         List<Integer> newDice = game.getCurrentDice();
         viewModel.setDiceValues(newDice);
-        System.out.println(viewModel.getDiceValues());
     }
     @Override
     public void onHoldButtonClicked() {

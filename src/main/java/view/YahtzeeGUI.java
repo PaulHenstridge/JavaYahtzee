@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YahtzeeGUI extends JFrame {
+public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> diceLabels = new ArrayList<>();
+    private JLabel messageLabel;
+    private JPanel dicePanel;
 
-    private IViewManager diceViewManager;
-   
+    private IViewEventHandler eventHandler;
 
-    public YahtzeeGUI(IViewManager diceViewManager) {
-        this.diceViewManager = diceViewManager;
+
+    public YahtzeeGUI(IViewEventHandler eventHandler) {
+        this.eventHandler = eventHandler;
 //        this.scoreViewManager = scoreViewManager;
 
         setTitle("Yahtzee Game");
@@ -40,7 +42,8 @@ public class YahtzeeGUI extends JFrame {
         rollButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                diceViewManager.rollButtonClicked();
+                messageLabel.setText("Dice Rolling");
+                eventHandler.rollButtonClicked();
             }
         });
         rollButton.setFont(new Font("Arial", Font.BOLD, 24));
@@ -75,7 +78,7 @@ private JPanel createDicePanel() {
     JPanel wrapper = new JPanel();
     wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
 
-    JLabel diceLabel = new JLabel("1", SwingConstants.CENTER);
+    JLabel diceLabel = new JLabel("?", SwingConstants.CENTER);
     diceLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
     diceLabels.add(diceLabel);
 
@@ -142,7 +145,7 @@ private JPanel createDicePanel() {
         scorePanel.add(scoreLabel, BorderLayout.CENTER);
 
         JPanel messagePanel = new JPanel(new BorderLayout());
-        JLabel messageLabel = new JLabel("", SwingConstants.CENTER);
+        messageLabel = new JLabel("hello", SwingConstants.CENTER);
         messageLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         messagePanel.add(new JLabel("Game Messages"), BorderLayout.NORTH);
         messagePanel.add(messageLabel, BorderLayout.CENTER);
@@ -157,4 +160,25 @@ private JPanel createDicePanel() {
         return diceLabels;
     }
 
+    @Override
+    public void updateDiceValues(List<Integer> newDiceValues) {
+        System.out.println(newDiceValues);
+        for (JLabel label : diceLabels) {
+            System.out.println(label.getText());
+        }
+        SwingUtilities.invokeLater(() -> {
+            for (int i = 0; i < newDiceValues.size(); i++) {
+            int finalI = i;
+                diceLabels.get(finalI).setText(String.valueOf(newDiceValues.get(finalI)));
+                diceLabels.get(finalI).repaint();
+            }
+            validate();
+        });
+
+        SwingUtilities.invokeLater(() -> {
+            for (JLabel label : diceLabels) {
+                System.out.println(label.getText());
+            }
+        });
+    }
 }
