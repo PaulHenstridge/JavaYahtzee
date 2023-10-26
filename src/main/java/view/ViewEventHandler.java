@@ -23,6 +23,15 @@ public class ViewEventHandler implements IViewEventHandler{
         }
     }
 
+    @Override
+    public void scoreButtonClicked(Enum<?> category){
+        if (listener != null) {
+            listener.onScoreButtonClicked(category);
+        }
+    }
+
+
+
     @Override //  event handler
     public void setViewListener(ViewListener listener) {
         this.listener = listener;

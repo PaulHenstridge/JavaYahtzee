@@ -1,5 +1,7 @@
 package view;
 
+import enums.YahtzeeEnums;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -54,8 +56,8 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
         // Create and add category panels
         String[] upperCategories = {"Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"};
         String[] lowerCategories = {"Three of a kind", "Four of a kind", "Full House", "Small Straight", "Large Straight", "Yahtzee", "Chance", "Yahtzee Bonus"};
-        JPanel upperCategoryPanel = createCategoryPanel("Upper Section", upperCategories);
-        JPanel lowerCategoryPanel = createCategoryPanel("Lower Section", lowerCategories);
+        JPanel upperCategoryPanel = createCategoryPanel("Upper Section", YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.values());
+        JPanel lowerCategoryPanel = createCategoryPanel("Lower Section",  YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.values());
         mainPanel.add(upperCategoryPanel);
         mainPanel.add(lowerCategoryPanel);
 
@@ -108,14 +110,41 @@ private JPanel createDicePanel(int index) {
     return panel;
 }
 
-    private JPanel createCategoryPanel(String title, String[] categories) {
+    private JPanel createCategoryPanel(String title, YahtzeeEnums.Section section, Enum<?>[] categories) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder(title));
         JPanel categoryGrid = new JPanel(new GridLayout(categories.length, 3));
 
-        for (String category : categories) {
-            JLabel categoryLabel = new JLabel(category);
+        for (Enum<?> category : categories) {
+            JLabel categoryLabel = new JLabel(formatEnumName(category.toString()));
+
             JButton selectButton = new JButton("Select");
+            String compositeCommand = section.name() + ":" + category.name();
+            selectButton.setActionCommand(compositeCommand);
+            selectButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String command = e.getActionCommand();
+                    String[] parts = command.split(":");
+                    System.out.println(command);
+                    Enum<?> scoreCategory = null;
+                    if (parts.length == 2){
+                        if ( "UPPER".equals(parts[0])){
+                            scoreCategory = YahtzeeEnums.UpperCategory.valueOf(parts[1]);
+                        }
+                        if ("LOWER".equals(parts[0])){
+                            scoreCategory = YahtzeeEnums.LowerCategory.valueOf(parts[1]);
+                        }
+                    }
+                    System.out.println(scoreCategory);
+                    if (scoreCategory != null) {
+                        eventHandler.scoreButtonClicked(scoreCategory);
+                    } else {
+                        // TODO - handle errors here
+                    }
+                }
+
+            });
             JLabel scoreLabel = new JLabel("");
             scoreLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             categoryGrid.add(categoryLabel);
@@ -175,4 +204,20 @@ public void updateDiceValues(List<Integer> newDiceValues) {
         diceLabels.get(i).setText(String.valueOf(newDiceValues.get(i)));
     }
 }
+
+
+
+
+
+    public static String formatEnumName(String enumName) {
+        String[] words = enumName.toLowerCase().split("_");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(Character.toUpperCase(word.charAt(0)));
+            sb.append(word.substring(1));
+            sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
+
 }
