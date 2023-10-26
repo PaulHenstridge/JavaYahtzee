@@ -31,7 +31,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
         // Create and add dice panels
         JPanel dicePanel = new JPanel(new GridLayout(1, 5, 30, 30));  // 1 row, 5 columns
         for (int i = 0; i < 5; i++) {
-            JPanel singleDicePanel = createDicePanel();
+            JPanel singleDicePanel = createDicePanel(i);
             dicePanel.add(singleDicePanel);
         }
         mainPanel.add(dicePanel);
@@ -71,7 +71,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
         setVisible(true);
     }
 
-private JPanel createDicePanel() {
+private JPanel createDicePanel(int index) {
     JPanel panel = new JPanel(new BorderLayout());
 
     // Create a wrapper panel with BoxLayout
@@ -93,8 +93,17 @@ private JPanel createDicePanel() {
     wrapper.add(Box.createHorizontalGlue());
 
     JButton holdButton = new JButton("Hold");
+    holdButton.setActionCommand(String.valueOf(index));
+    holdButton.addActionListener(new ActionListener() {
+     @Override
+     public void actionPerformed(ActionEvent e) {
+         String command = e.getActionCommand();
+         int index = Integer.parseInt(command);
+         eventHandler.holdButtonClicked(index);
+     }
+ });
 
-    panel.add(wrapper, BorderLayout.CENTER);  // Add wrapper instead of diceLabel
+    panel.add(wrapper, BorderLayout.CENTER);
     panel.add(holdButton, BorderLayout.SOUTH);
     return panel;
 }

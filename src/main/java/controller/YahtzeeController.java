@@ -1,7 +1,6 @@
 package controller;
 
 import model.IGame;
-import view.ViewListener;
 import view.YahtzeeViewModel;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class YahtzeeController implements ViewListener {
         viewModel.setDiceValues(newDice);
     }
     @Override
-    public void onHoldButtonClicked() {
-
+    public void onHoldButtonClicked(int index) {
+        game.toggleHoldButton(index);
     }
 }

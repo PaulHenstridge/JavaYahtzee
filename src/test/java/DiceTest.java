@@ -2,7 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import model.dice.Die;
-import model.dice.YahtzeeDiceController;
+import model.dice.DiceController;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class DiceTest {
     @Test
     public void TestCanRollFiveDice() {
         // Arrange
-        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
+        DiceController YahtzeeDice = new DiceController(5);
 
         // Act
         for (int i = 0; i < 100; i++) {
@@ -38,7 +38,7 @@ public class DiceTest {
     @Test
     public void TestDiceCanBeHeld() {
         // Arrange
-        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
+        DiceController YahtzeeDice = new DiceController(5);
 
         //Act
         for (int i = 0; i < 100; i++) {
@@ -61,7 +61,7 @@ public class DiceTest {
     @Test
     public void TestDiceCanBeUnheld() {
         // Arrange
-        YahtzeeDiceController YahtzeeDice = new YahtzeeDiceController(5);
+        DiceController YahtzeeDice = new DiceController(5);
 
         //Act
         for (int i = 0; i < 100; i++) {

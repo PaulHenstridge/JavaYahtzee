@@ -1,6 +1,6 @@
 import model.Game;
 import enums.YahtzeeEnums;
-import model.dice.YahtzeeDiceController;
+import model.dice.DiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
 import model.scoring.Upper;
@@ -15,10 +15,10 @@ import java.util.Arrays;
 
 public class GameTest {
     private Game game;
-    private YahtzeeDiceController mockDice;
+    private DiceController mockDice;
     @Before
     public void setUp(){
-        mockDice = Mockito.mock(YahtzeeDiceController.class);
+        mockDice = Mockito.mock(DiceController.class);
         ScoreKeeper scoreKeeper = new ScoreKeeper();
         Upper upper = new Upper();
         Lower lower = new Lower();

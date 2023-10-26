@@ -1,7 +1,7 @@
 package model;
 
 import enums.YahtzeeEnums;
-import model.dice.YahtzeeDiceController;
+import model.dice.DiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
 import model.scoring.UpdateStatus;
@@ -10,13 +10,13 @@ import model.scoring.Upper;
 import java.util.List;
 
 public class Game implements IGame{
-    private YahtzeeDiceController dice;
+    private DiceController dice;
     private Lower lower;
     private Upper upper;
     private ScoreKeeper scoreKeeper;
 
 
-    public Game(YahtzeeDiceController dice, ScoreKeeper scoreKeeper, Upper upper, Lower lower) {
+    public Game(DiceController dice, ScoreKeeper scoreKeeper, Upper upper, Lower lower) {
         this.dice = dice;
         this.lower = lower;
         this.upper = upper;
@@ -77,6 +77,10 @@ public class Game implements IGame{
 
     public Integer getCategoryScore(YahtzeeEnums.Section section, Enum<?> category){
         return scoreKeeper.getScore(section, category);
+    }
+
+    public void toggleHoldButton(int index){
+        dice.toggleHold(index);
     }
 
     public void holdDie(int index){

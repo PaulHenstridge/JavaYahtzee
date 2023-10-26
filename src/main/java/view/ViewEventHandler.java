@@ -1,7 +1,7 @@
 package view;
 
 
-import java.beans.PropertyChangeEvent;
+import controller.ViewListener;
 
 public class ViewEventHandler implements IViewEventHandler{
     private ViewListener listener;
@@ -13,6 +13,13 @@ public class ViewEventHandler implements IViewEventHandler{
     public void rollButtonClicked() {
         if (listener != null) {
             listener.onRollButtonClicked();
+        }
+    }
+
+    @Override
+    public void holdButtonClicked(int index){
+        if (listener != null) {
+            listener.onHoldButtonClicked(index);
         }
     }
 

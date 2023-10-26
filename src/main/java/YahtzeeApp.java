@@ -1,7 +1,7 @@
 import controller.YahtzeeController;
 import model.Game;
 import model.IGame;
-import model.dice.YahtzeeDiceController;
+import model.dice.DiceController;
 import model.scoring.Lower;
 import model.scoring.ScoreKeeper;
 import model.scoring.Upper;
@@ -12,7 +12,7 @@ public class YahtzeeApp {
 
     public static void main(String[] args) {
         // Initialize model components
-        YahtzeeDiceController dice = new YahtzeeDiceController(5);
+        DiceController dice = new DiceController(5);
         ScoreKeeper scoreKeeper = new ScoreKeeper();
         Upper upper = new Upper();
         Lower lower = new Lower();

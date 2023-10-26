@@ -19,6 +19,7 @@ public interface IGame {
     Integer getCategoryScore(YahtzeeEnums.Section section, Enum<?> category);
     void holdDie(int index);
     void unholdDie(int index);
+    void toggleHoldButton(int index);
     void clearHolds();
     int getUpperScore();
     int getLowerScore();

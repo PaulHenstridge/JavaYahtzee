@@ -1,7 +1,8 @@
-package view;
+package controller;
 
 public interface ViewListener {
     void onRollButtonClicked();
+    void onHoldButtonClicked(int index);
 
-    void onHoldButtonClicked();
+
 }
