@@ -36,7 +36,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
         }
         mainPanel.add(dicePanel);
 
-        // Create a panel to hold the roll button
+        // Create a panel to hold roll button
         JPanel rollButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton rollButton = new JButton("Roll Dice");
         rollButton.addActionListener(new ActionListener() {
@@ -160,25 +160,10 @@ private JPanel createDicePanel() {
         return diceLabels;
     }
 
-    @Override
-    public void updateDiceValues(List<Integer> newDiceValues) {
-        System.out.println(newDiceValues);
-        for (JLabel label : diceLabels) {
-            System.out.println(label.getText());
-        }
-        SwingUtilities.invokeLater(() -> {
-            for (int i = 0; i < newDiceValues.size(); i++) {
-            int finalI = i;
-                diceLabels.get(finalI).setText(String.valueOf(newDiceValues.get(finalI)));
-                diceLabels.get(finalI).repaint();
-            }
-            validate();
-        });
-
-        SwingUtilities.invokeLater(() -> {
-            for (JLabel label : diceLabels) {
-                System.out.println(label.getText());
-            }
-        });
+@Override
+public void updateDiceValues(List<Integer> newDiceValues) {
+    for (int i = 0; i < newDiceValues.size(); i++) {
+        diceLabels.get(i).setText(String.valueOf(newDiceValues.get(i)));
     }
+}
 }

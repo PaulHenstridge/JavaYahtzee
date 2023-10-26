@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import model.dice.Dice;
+import model.dice.Die;
 import model.dice.YahtzeeDiceController;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class DiceTest {
     @Test
     public void TestCanRollSingleDie() {
         // Arrange
-        Dice Dice = new Dice();
+        Die Dice = new Die();
         // Act
         for (int i = 0; i < 1000; i++) {
             Dice.roll();
@@ -67,7 +67,7 @@ public class DiceTest {
         for (int i = 0; i < 100; i++) {
             YahtzeeDice.resetHolds();
             YahtzeeDice.rollDice();
-            List<Dice> currentDice = YahtzeeDice.getDiceList();
+            List<Die> currentDice = YahtzeeDice.getDiceList();
             for (int j = 0; j < currentDice.size(); j++) {
                 YahtzeeDice.holdDice(j);
             }

@@ -41,7 +41,6 @@ public class YahtzeeApp {
 
         eventHandler.setViewListener(controller);
 
-        new YahtzeeGUI(eventHandler);  // Pass the viewManager to the GUI so it can call methods on it
     }
 
 }

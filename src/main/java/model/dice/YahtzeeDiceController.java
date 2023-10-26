@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class YahtzeeDiceController implements DiceController{
-    private List<Dice> diceList = new ArrayList<>();
+    private List<Die> diceList = new ArrayList<>();
     private List<Boolean> holdList = new ArrayList<>();
 
     public YahtzeeDiceController(int diceCount) {
         for (int i = 0; i < diceCount; i++) {
-            diceList.add(new Dice());
+            diceList.add(new Die());
             holdList.add(false);
         }
     }
@@ -34,7 +34,7 @@ public class YahtzeeDiceController implements DiceController{
 
     public List<Integer> getDiceValues() {
         List<Integer> values = new ArrayList<>();
-        for (Dice dice : diceList) {
+        for (Die dice : diceList) {
             values.add(dice.getValue());
         }
         return values;
@@ -50,7 +50,7 @@ public class YahtzeeDiceController implements DiceController{
         return holdList;
     }
 
-    public List<Dice> getDiceList() {
+    public List<Die> getDiceList() {
         return diceList;
     }
 }

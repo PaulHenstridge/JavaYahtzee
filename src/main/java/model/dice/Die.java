@@ -1,5 +1,5 @@
 package model.dice;
-public class Dice {
+public class Die {
     private int value;
 
     public void roll() {
