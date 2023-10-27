@@ -241,8 +241,11 @@ public class YahtzeeViewModel {
         this.upperBonus = upperBonus;
     }
 
-    public void setUpperTotal(int upperTotal) {
-        this.upperTotal = upperTotal;
+    public void setUpperTotal(int newUpperTotal) {
+        int prevTotal = this.getUpperTotal();
+        this.upperTotal = newUpperTotal;
+        support.firePropertyChange("upperTotal",prevTotal, upperTotal);
+
     }
 
     private void setThreeOfAKind(int threeOfAKind) {

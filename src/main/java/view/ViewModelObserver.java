@@ -22,8 +22,6 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
     @Override // model observer
     public void propertyChange(PropertyChangeEvent evt) {
         String propName = evt.getPropertyName();
-        System.out.println("next line prop name in VMO switch");
-        System.out.println(propName);
 
         if (propName == "diceValues"){
             List<Integer> newDiceValues = (List<Integer>) evt.getNewValue();
@@ -31,7 +29,7 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
         }
 
         if (propName == "upperTotal"){
-            // handle updating upper total
+            System.out.println("ITs working!");
         }
         if (propName == "lowerTotal"){
             // handle updating upper total

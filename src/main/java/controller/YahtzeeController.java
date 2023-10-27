@@ -36,6 +36,7 @@ public class YahtzeeController implements ViewListener {
                 // get score from model, pass through with enum
                 int score = game.getCategoryScore(YahtzeeEnums.Section.UPPER, category);
                 viewModel.setScoreValues(score, (YahtzeeEnums.UpperCategory) category);
+                viewModel.setUpperTotal(game.getUpperScore());
             }
         } else if ( category instanceof YahtzeeEnums.LowerCategory){
             YahtzeeEnums.LowerCategory lowerCategory = (YahtzeeEnums.LowerCategory) category;
@@ -46,6 +47,8 @@ public class YahtzeeController implements ViewListener {
                     if (successTOAK) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
+
                     }
                         break;
 
