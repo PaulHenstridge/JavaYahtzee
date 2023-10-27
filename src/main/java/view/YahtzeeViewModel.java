@@ -11,23 +11,23 @@ public class YahtzeeViewModel {
     private final PropertyChangeSupport support;
     private List<Integer> diceValues = Arrays.asList(1,1,1,1,1);
 
-    private int ones;
-    private int twos;
-    private int threes;
-    private int fours;
-    private int fives;
-    private int sixes;
+    private Integer ones;
+    private Integer twos;
+    private Integer threes;
+    private Integer fours;
+    private Integer fives;
+    private Integer sixes;
     private boolean upperBonus;
 
     private int upperTotal;
 
-    private int threeOfAKind;
-    private int fourOfAKind;
-    private int fullHouse;
-    private int smallStraight;
-    private int largeStraight;
-    private int Yahtzee;
-    private int chance;
+    private Integer threeOfAKind;
+    private Integer fourOfAKind;
+    private Integer fullHouse;
+    private Integer smallStraight;
+    private Integer largeStraight;
+    private Integer Yahtzee;
+    private Integer chance;
     private int yahtzeeBonus;
 
     private int lowerTotal;
@@ -42,27 +42,27 @@ public class YahtzeeViewModel {
         return diceValues;
     }
 
-    public int getOnes() {
+    public Integer getOnes() {
         return ones;
     }
 
-    public int getTwos() {
+    public Integer getTwos() {
         return twos;
     }
 
-    public int getThrees() {
+    public Integer getThrees() {
         return threes;
     }
 
-    public int getFours() {
+    public Integer getFours() {
         return fours;
     }
 
-    public int getFives() {
+    public Integer getFives() {
         return fives;
     }
 
-    public int getSixes() {
+    public Integer getSixes() {
         return sixes;
     }
 
@@ -74,31 +74,31 @@ public class YahtzeeViewModel {
         return upperTotal;
     }
 
-    public int getThreeOfAKind() {
+    public Integer getThreeOfAKind() {
         return threeOfAKind;
     }
 
-    public int getFourOfAKind() {
+    public Integer getFourOfAKind() {
         return fourOfAKind;
     }
 
-    public int getFullHouse() {
+    public Integer getFullHouse() {
         return fullHouse;
     }
 
-    public int getSmallStraight() {
+    public Integer getSmallStraight() {
         return smallStraight;
     }
 
-    public int getLargeStraight() {
+    public Integer getLargeStraight() {
         return largeStraight;
     }
 
-    public int getYahtzee() {
+    public Integer getYahtzee() {
         return Yahtzee;
     }
 
-    public int getChance() {
+    public Integer getChance() {
         return chance;
     }
 
@@ -125,94 +125,115 @@ public class YahtzeeViewModel {
         // switch on upper category
         switch(category){
             case ONES:
-                int oldVal1 = this.getOnes();
+                Integer oldVal1 =  this.getOnes();
                 this.setOnes(score);
                 support.firePropertyChange(category.name(),oldVal1, this.getOnes());
                 break;
 
             case TWOS:
-                int oldVal2 = this.getTwos();
+                Integer oldVal2 = this.getTwos();
                 this.setTwos(score);
                 support.firePropertyChange(category.name(),oldVal2, this.getTwos());
                 break;
 
             case THREES:
-                int oldVal3 = this.getThrees();
+                Integer oldVal3 = this.getThrees();
                 this.setThrees(score);
                 support.firePropertyChange(category.name(),oldVal3, this.getThrees());
                 break;
 
             case FOURS:
-                int oldVal4 = this.getFours();
+                Integer oldVal4 = this.getFours();
                 this.setFours(score);
                 support.firePropertyChange(category.name(),oldVal4, this.getFours());
                 break;
 
             case FIVES:
-                int oldVal5 = this.getFives();
+                Integer oldVal5 = this.getFives();
                 this.setFives(score);
                 support.firePropertyChange(category.name(),oldVal5, this.getFives());
                 break;
 
             case SIXES:
-                int oldVal6 = this.getSixes();
+                Integer oldVal6 = this.getSixes();
                 this.setSixes(score);
                 support.firePropertyChange(category.name(),oldVal6, this.getSixes());
         }
     }
     public void setScoreValues(int score, YahtzeeEnums.LowerCategory category){
+        System.out.println("score: "+ score +" , category: "+ category);
         switch(category){
             case THREE_OF_A_KIND:
+                Integer oldValTOAK= this.getThreeOfAKind();
+                this.setThreeOfAKind(score);
+                System.out.println("YVM169- old: "+ oldValTOAK + " new: " + this.getThreeOfAKind());
+                support.firePropertyChange(category.name(),oldValTOAK, this.getThreeOfAKind());
+
 
                 break;
             case FOUR_OF_A_KIND:
+                Integer oldValFOAK= this.getFourOfAKind();
+                this.setFourOfAKind(score);
+                support.firePropertyChange(category.name(),oldValFOAK, this.getFourOfAKind());
 
                 break;
 
             case FULL_HOUSE:
+                Integer oldValFH= this.getFullHouse();
+                this.setFullHouse(score);
+                support.firePropertyChange(category.name(),oldValFH, this.getFullHouse());
 
                 break;
 
             case SMALL_STRAIGHT:
+                Integer oldValSS= this.getSmallStraight();
+                this.setSmallStraight(score);
+                support.firePropertyChange(category.name(),oldValSS, this.getSmallStraight());
 
                 break;
 
             case LARGE_STRAIGHT:
+                Integer oldValLS= this.getLargeStraight();
+                this.setLargeStraight(score);
+                support.firePropertyChange(category.name(),oldValLS, this.getLargeStraight());
 
                 break;
 
-                case YAHTZEE:
+            case YAHTZEE:
+                Integer oldValYZ= this.getYahtzee();
+                this.setYahtzee(score);
+                support.firePropertyChange(category.name(),oldValYZ, this.getYahtzee());
 
                     break;
             case CHANCE:
-
-                
+                Integer oldValCH= this.getChance();
+                this.setChance(score);
+                support.firePropertyChange(category.name(),oldValCH, this.getChance());
         }
     }
 
 
-    public void setOnes(int newVal) {
-        int oldVal = this.ones;
-        this.ones = newVal;
+    private void setOnes(int ones) {
+        this.ones = ones;
     }
 
-    public void setTwos(int twos) {
+    private void setTwos(int twos) {
         this.twos = twos;
     }
 
-    public void setThrees(int threes) {
+    private void setThrees(int threes) {
         this.threes = threes;
     }
 
-    public void setFours(int fours) {
+    private void setFours(int fours) {
         this.fours = fours;
     }
 
-    public void setFives(int fives) {
+    private void setFives(int fives) {
         this.fives = fives;
     }
 
-    public void setSixes(int sixes) {
+    private void setSixes(int sixes) {
         this.sixes = sixes;
     }
 
@@ -224,23 +245,23 @@ public class YahtzeeViewModel {
         this.upperTotal = upperTotal;
     }
 
-    public void setThreeOfAKind(int threeOfAKind) {
+    private void setThreeOfAKind(int threeOfAKind) {
         this.threeOfAKind = threeOfAKind;
     }
 
-    public void setFourOfAKind(int fourOfAKind) {
+    private void setFourOfAKind(int fourOfAKind) {
         this.fourOfAKind = fourOfAKind;
     }
 
-    public void setFullHouse(int fullHouse) {
+    private void setFullHouse(int fullHouse) {
         this.fullHouse = fullHouse;
     }
 
-    public void setSmallStraight(int smallStraight) {
+    private void setSmallStraight(int smallStraight) {
         this.smallStraight = smallStraight;
     }
 
-    public void setLargeStraight(int largeStraight) {
+    private void setLargeStraight(int largeStraight) {
         this.largeStraight = largeStraight;
     }
 
@@ -248,7 +269,7 @@ public class YahtzeeViewModel {
         Yahtzee = yahtzee;
     }
 
-    public void setChance(int chance) {
+    private void setChance(int chance) {
         this.chance = chance;
     }
 

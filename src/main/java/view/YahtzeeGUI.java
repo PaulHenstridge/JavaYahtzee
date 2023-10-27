@@ -215,6 +215,16 @@ public void updateUpperScore(int score, YahtzeeEnums.UpperCategory category){
     }
 }
 
+public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
+    System.out.println("updateLOWER called!");
+
+    for (JLabel label : scoreLabels){
+        if ( category.equals(label.getClientProperty("category"))){
+            label.setText(String.valueOf(score));
+        }
+    }
+}
+
 
 
 

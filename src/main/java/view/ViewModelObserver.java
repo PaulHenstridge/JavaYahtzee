@@ -42,9 +42,29 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
 
         if (evt.getNewValue() instanceof Integer) {
             int score = (Integer) evt.getNewValue();
-            YahtzeeEnums.UpperCategory category = YahtzeeEnums.UpperCategory.valueOf(propName);
+            Enum<?> category = null;
+            try {
+                // Attempt to convert propName to an UpperCategory enum constant
+                category = YahtzeeEnums.UpperCategory.valueOf(propName);
+            } catch (IllegalArgumentException e) {
+                // handle exception - propName is not an UpperCategory
+                try {
+                    // Attempt to convert propName to a LowerCategory enum constant
+                    category = YahtzeeEnums.LowerCategory.valueOf(propName);
+                } catch (IllegalArgumentException e1) {
+                    //  handle exception - propName is neither an UpperCategory nor a LowerCategory
+                }
+            }
 
-            guiUpdater.updateUpperScore(score, category);
+            if (category instanceof YahtzeeEnums.UpperCategory) {
+                guiUpdater.updateUpperScore(score, (YahtzeeEnums.UpperCategory) category);
+            } else if (category instanceof YahtzeeEnums.LowerCategory) {
+                System.out.println("firing upDateLower from VMO");
+                guiUpdater.updateLowerScore(score, (YahtzeeEnums.LowerCategory) category);
+            } else {
+                // Handle case where propName doesn't match any category
+            }
+
 
         }
     }
