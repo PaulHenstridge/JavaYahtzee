@@ -1,5 +1,7 @@
 package view;
 
+import enums.YahtzeeEnums;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
@@ -119,10 +121,79 @@ public class YahtzeeViewModel {
         support.firePropertyChange("diceValues", oldDiceValues, newDiceValues);
     }
 
+    public void setScoreValues(int score, YahtzeeEnums.UpperCategory category){
+        // switch on upper category
+        switch(category){
+            case ONES:
+                int oldVal1 = this.getOnes();
+                this.setOnes(score);
+                support.firePropertyChange(category.name(),oldVal1, this.getOnes());
+                break;
+
+            case TWOS:
+                int oldVal2 = this.getTwos();
+                this.setTwos(score);
+                support.firePropertyChange(category.name(),oldVal2, this.getTwos());
+                break;
+
+            case THREES:
+                int oldVal3 = this.getThrees();
+                this.setThrees(score);
+                support.firePropertyChange(category.name(),oldVal3, this.getThrees());
+                break;
+
+            case FOURS:
+                int oldVal4 = this.getFours();
+                this.setFours(score);
+                support.firePropertyChange(category.name(),oldVal4, this.getFours());
+                break;
+
+            case FIVES:
+                int oldVal5 = this.getFives();
+                this.setFives(score);
+                support.firePropertyChange(category.name(),oldVal5, this.getFives());
+                break;
+
+            case SIXES:
+                int oldVal6 = this.getSixes();
+                this.setSixes(score);
+                support.firePropertyChange(category.name(),oldVal6, this.getSixes());
+        }
+    }
+    public void setScoreValues(int score, YahtzeeEnums.LowerCategory category){
+        switch(category){
+            case THREE_OF_A_KIND:
+
+                break;
+            case FOUR_OF_A_KIND:
+
+                break;
+
+            case FULL_HOUSE:
+
+                break;
+
+            case SMALL_STRAIGHT:
+
+                break;
+
+            case LARGE_STRAIGHT:
+
+                break;
+
+                case YAHTZEE:
+
+                    break;
+            case CHANCE:
+
+                
+        }
+    }
+
+
     public void setOnes(int newVal) {
         int oldVal = this.ones;
         this.ones = newVal;
-        support.firePropertyChange("ones", oldVal, newVal);
     }
 
     public void setTwos(int twos) {

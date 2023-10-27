@@ -1,5 +1,7 @@
 package view;
 
+import enums.YahtzeeEnums;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -20,22 +22,30 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
     @Override // model observer
     public void propertyChange(PropertyChangeEvent evt) {
         String propName = evt.getPropertyName();
-        switch (propName) {
-            case "diceValues":
-                List<Integer> newDiceValues = (List<Integer>) evt.getNewValue();
-                guiUpdater.updateDiceValues(newDiceValues);
-                break;
+        System.out.println("next line prop name in VMO switch");
+        System.out.println(propName);
 
-            case "ones":
-                if (evt.getNewValue() instanceof Integer) {
-                    int newVal = (Integer) evt.getNewValue();
-//                    guiUpdater.categoryScore(newVal);
-                    // pass through the enum along with the score, and 1 method should do it...
-                    // should be able to ge the enum from the switch condition
-                }
-
-
+        if (propName == "diceValues"){
+            List<Integer> newDiceValues = (List<Integer>) evt.getNewValue();
+            guiUpdater.updateDiceValues(newDiceValues);
         }
 
+        if (propName == "upperTotal"){
+            // handle updating upper total
+        }
+        if (propName == "lowerTotal"){
+            // handle updating upper total
+        }
+         if (propName == "grandTotal"){
+            // handle updating upper total
+        }
+
+        if (evt.getNewValue() instanceof Integer) {
+            int score = (Integer) evt.getNewValue();
+            YahtzeeEnums.UpperCategory category = YahtzeeEnums.UpperCategory.valueOf(propName);
+
+            guiUpdater.updateUpperScore(score, category);
+
+        }
     }
 }

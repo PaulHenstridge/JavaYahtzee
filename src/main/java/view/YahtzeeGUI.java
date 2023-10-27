@@ -12,6 +12,7 @@ import java.util.List;
 
 public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> diceLabels = new ArrayList<>();
+    private List<JLabel> scoreLabels = new ArrayList<>();
     private JLabel messageLabel;
     private JPanel dicePanel;
 
@@ -126,7 +127,6 @@ private JPanel createDicePanel(int index) {
                 public void actionPerformed(ActionEvent e) {
                     String command = e.getActionCommand();
                     String[] parts = command.split(":");
-                    System.out.println(command);
                     Enum<?> scoreCategory = null;
                     if (parts.length == 2){
                         if ( "UPPER".equals(parts[0])){
@@ -136,7 +136,6 @@ private JPanel createDicePanel(int index) {
                             scoreCategory = YahtzeeEnums.LowerCategory.valueOf(parts[1]);
                         }
                     }
-                    System.out.println(scoreCategory);
                     if (scoreCategory != null) {
                         eventHandler.scoreButtonClicked(scoreCategory);
                     } else {
@@ -146,6 +145,8 @@ private JPanel createDicePanel(int index) {
 
             });
             JLabel scoreLabel = new JLabel("");
+            scoreLabel.putClientProperty("category", category);
+            scoreLabels.add(scoreLabel);
             scoreLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             categoryGrid.add(categoryLabel);
             categoryGrid.add(selectButton);
@@ -205,8 +206,13 @@ public void updateDiceValues(List<Integer> newDiceValues) {
     }
 }
 
-public void updateOnes(int newVal){
-
+public void updateUpperScore(int score, YahtzeeEnums.UpperCategory category){
+        System.out.println("updateUpper called!");
+    for (JLabel label : scoreLabels){
+        if ( category.equals(label.getClientProperty("category"))){
+            label.setText(String.valueOf(score));
+        }
+    }
 }
 
 

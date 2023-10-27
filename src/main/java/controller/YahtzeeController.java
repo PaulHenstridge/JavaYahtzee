@@ -26,14 +26,17 @@ public class YahtzeeController implements ViewListener {
     public void onHoldButtonClicked(int index) {
         game.toggleHoldButton(index);
     }
+
+
     @Override
     public void onScoreButtonClicked(Enum<?> category) {
         if (category instanceof YahtzeeEnums.UpperCategory) {
             boolean success = game.scoreUpper((YahtzeeEnums.UpperCategory) category);
             if (success) {
                 // TODO - call method in viewModel that takes the enum
-                System.out.println(game.getCategoryScore(YahtzeeEnums.Section.UPPER, category));
-                System.out.println(game.getUpperScore());
+                // get score from model, pass through with enum
+                int score = game.getCategoryScore(YahtzeeEnums.Section.UPPER, category);
+                viewModel.setScoreValues(score, (YahtzeeEnums.UpperCategory) category);
             }
         } else if ( category instanceof YahtzeeEnums.LowerCategory){
             // handle lower category calls
