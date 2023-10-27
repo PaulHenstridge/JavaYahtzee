@@ -13,12 +13,29 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
         this.viewModel = viewModel;
     }
 
+    // TODO - refactor to use enums for property names.  may need additional enum set
+    //  for dice and totals
+
 
     @Override // model observer
     public void propertyChange(PropertyChangeEvent evt) {
-        if ("diceValues".equals(evt.getPropertyName())) {
-            List<Integer> newDiceValues = (List<Integer>) evt.getNewValue();
-            guiUpdater.updateDiceValues(newDiceValues);
+        String propName = evt.getPropertyName();
+        switch (propName) {
+            case "diceValues":
+                List<Integer> newDiceValues = (List<Integer>) evt.getNewValue();
+                guiUpdater.updateDiceValues(newDiceValues);
+                break;
+
+            case "ones":
+                if (evt.getNewValue() instanceof Integer) {
+                    int newVal = (Integer) evt.getNewValue();
+//                    guiUpdater.categoryScore(newVal);
+                    // pass through the enum along with the score, and 1 method should do it...
+                    // should be able to ge the enum from the switch condition
+                }
+
+
         }
+
     }
 }

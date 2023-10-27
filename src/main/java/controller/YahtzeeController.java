@@ -29,9 +29,9 @@ public class YahtzeeController implements ViewListener {
     @Override
     public void onScoreButtonClicked(Enum<?> category) {
         if (category instanceof YahtzeeEnums.UpperCategory) {
-            YahtzeeEnums.UpperCategory upperCategory = (YahtzeeEnums.UpperCategory) category;
             boolean success = game.scoreUpper((YahtzeeEnums.UpperCategory) category);
             if (success) {
+                // TODO - call method in viewModel that takes the enum
                 System.out.println(game.getCategoryScore(YahtzeeEnums.Section.UPPER, category));
                 System.out.println(game.getUpperScore());
             }

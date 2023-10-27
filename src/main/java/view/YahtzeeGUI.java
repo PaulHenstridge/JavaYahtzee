@@ -205,6 +205,10 @@ public void updateDiceValues(List<Integer> newDiceValues) {
     }
 }
 
+public void updateOnes(int newVal){
+
+}
+
 
 
 
