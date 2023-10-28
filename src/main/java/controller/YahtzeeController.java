@@ -48,7 +48,6 @@ public class YahtzeeController implements ViewListener {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
                         viewModel.setLowerTotal(game.getLowerScore());
-
                     }
                         break;
 
@@ -57,6 +56,7 @@ public class YahtzeeController implements ViewListener {
                     if (successFOAK) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
                     break;
 
@@ -65,6 +65,7 @@ public class YahtzeeController implements ViewListener {
                     if (successFH) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
                     break;
 
@@ -73,6 +74,7 @@ public class YahtzeeController implements ViewListener {
                     if (successSS) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
                     break;
 
@@ -81,6 +83,7 @@ public class YahtzeeController implements ViewListener {
                     if (successLS) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
                     break;
                 case YAHTZEE:
@@ -88,6 +91,7 @@ public class YahtzeeController implements ViewListener {
                     if (successYZ) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
                     break;
                 case CHANCE:
@@ -95,6 +99,7 @@ public class YahtzeeController implements ViewListener {
                     if (successCH) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
+                        viewModel.setLowerTotal(game.getLowerScore());
                     }
             }
 

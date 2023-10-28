@@ -212,6 +212,17 @@ public class YahtzeeViewModel {
         }
     }
 
+    public void setUpperTotal(int newUpperTotal) {
+        int prevTotal = this.getUpperTotal();
+        this.upperTotal = newUpperTotal;
+        support.firePropertyChange("upperTotal",prevTotal, upperTotal);
+    }
+    public void setLowerTotal(int newLowerTotal) {
+        int prevTotal = this.getLowerTotal();
+        this.lowerTotal = newLowerTotal;
+        support.firePropertyChange("lowerTotal",prevTotal, lowerTotal);
+    }
+
 
     private void setOnes(int ones) {
         this.ones = ones;
@@ -241,12 +252,7 @@ public class YahtzeeViewModel {
         this.upperBonus = upperBonus;
     }
 
-    public void setUpperTotal(int newUpperTotal) {
-        int prevTotal = this.getUpperTotal();
-        this.upperTotal = newUpperTotal;
-        support.firePropertyChange("upperTotal",prevTotal, upperTotal);
 
-    }
 
     private void setThreeOfAKind(int threeOfAKind) {
         this.threeOfAKind = threeOfAKind;
@@ -280,13 +286,13 @@ public class YahtzeeViewModel {
         this.yahtzeeBonus = yahtzeeBonus;
     }
 
-    public void setLowerTotal(int lowerTotal) {
-        this.lowerTotal = lowerTotal;
-    }
+//    public void setLowerTotal(int lowerTotal) {
+//        this.lowerTotal = lowerTotal;
+//    }
 
-    public void setGrandTotal(int grandTotal) {
-        this.grandTotal = grandTotal;
-    }
+//    public void setGrandTotal(int grandTotal) {
+//        this.grandTotal = grandTotal;
+//    }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

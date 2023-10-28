@@ -29,10 +29,12 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
         }
 
         if (propName == "upperTotal"){
-            System.out.println("ITs working!");
+            int newUpperScore = (Integer) evt.getNewValue();
+            guiUpdater.updateUpperTotal(newUpperScore);
         }
         if (propName == "lowerTotal"){
-            // handle updating upper total
+            int newLowerScore = (Integer) evt.getNewValue();
+            guiUpdater.updateLowerTotal(newLowerScore);
         }
          if (propName == "grandTotal"){
             // handle updating upper total

@@ -13,6 +13,7 @@ import java.util.List;
 public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> diceLabels = new ArrayList<>();
     private List<JLabel> scoreLabels = new ArrayList<>();
+    private List<JLabel> totalLabels = new ArrayList<>();
     private JLabel messageLabel;
     private JPanel dicePanel;
 
@@ -155,11 +156,14 @@ private JPanel createDicePanel(int index) {
         panel.add(categoryGrid, BorderLayout.CENTER);
 
         JPanel scorePanel = new JPanel(new BorderLayout());
-        JLabel scoreLabel = new JLabel("0", SwingConstants.CENTER);
-        scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        JLabel totalLabel = new JLabel("0", SwingConstants.CENTER);
+        totalLabel.putClientProperty("section", title );
+        totalLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        totalLabels.add(totalLabel);
 
         scorePanel.add(new JLabel(title + " Score"), BorderLayout.NORTH);
-        scorePanel.add(scoreLabel, BorderLayout.CENTER);
+        scorePanel.add(totalLabel, BorderLayout.CENTER);
+        // todo add scorePanel to List scoreTotals
 
         JLabel bonusLabel = new JLabel("BONUS", SwingConstants.CENTER);
         bonusLabel.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -221,6 +225,21 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
         }
     }
 }
+    public void updateUpperTotal(int newTotal){
+        for ( JLabel label : totalLabels) {
+            if ("Upper Section".equals(label.getClientProperty("section"))) {
+                label.setText(String.valueOf(newTotal));
+            }
+        }
+    }
+
+    public void updateLowerTotal(int newTotal){
+        for ( JLabel label : totalLabels) {
+            if ("Lower Section".equals(label.getClientProperty("section")) ){
+                label.setText(String.valueOf(newTotal));
+            }
+        }
+    }
 
 
 
