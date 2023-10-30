@@ -14,7 +14,7 @@ public class ScoreKeeperTest {
     @Test
     public void TestScoreKeeperUpper() {
         scoreKeeper.updateScore(15, YahtzeeEnums.Section.UPPER,YahtzeeEnums.UpperCategory.THREES );
-        assertEquals(15, scoreKeeper.getUpperScore());
+        assertEquals(15, scoreKeeper.getUpperTotal());
         assertEquals(15, (int) scoreKeeper.getScore(YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.THREES));
     }
 //    @Test
@@ -34,7 +34,7 @@ public class ScoreKeeperTest {
         scoreKeeper.updateScore(25, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.FIVES);
         scoreKeeper.updateScore(20, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.FOURS);
 
-        assertEquals(110, scoreKeeper.getUpperScore());
+        assertEquals(110, scoreKeeper.getUpperTotal());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class ScoreKeeperTest {
         scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
         scoreKeeper.updateScore(30, YahtzeeEnums.Section.UPPER, YahtzeeEnums.UpperCategory.SIXES);
 
-        assertEquals(30, scoreKeeper.getUpperScore());
+        assertEquals(30, scoreKeeper.getUpperTotal());
     }
 
     @Test

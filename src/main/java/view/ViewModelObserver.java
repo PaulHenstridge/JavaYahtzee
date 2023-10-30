@@ -29,15 +29,21 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
         }
 
         if (propName == "upperTotal"){
-            int newUpperScore = (Integer) evt.getNewValue();
-            guiUpdater.updateUpperTotal(newUpperScore);
+            int newUpperTotal = (Integer) evt.getNewValue();
+            guiUpdater.updateUpperTotal(newUpperTotal);
         }
         if (propName == "lowerTotal"){
-            int newLowerScore = (Integer) evt.getNewValue();
-            guiUpdater.updateLowerTotal(newLowerScore);
+            int newLowerTotal = (Integer) evt.getNewValue();
+            guiUpdater.updateLowerTotal(newLowerTotal);
         }
          if (propName == "grandTotal"){
-            // handle updating upper total
+             int newGrandTotal = (Integer) evt.getNewValue();
+             guiUpdater.updateGrandTotal(newGrandTotal);
+        }
+         if (propName == "upperBonus"){
+             System.out.println("VMO fired");
+             boolean newUpperBonus = (boolean) evt.getNewValue();
+             guiUpdater.updateBonus(YahtzeeEnums.Section.UPPER, newUpperBonus);
         }
 
         if (evt.getNewValue() instanceof Integer) {

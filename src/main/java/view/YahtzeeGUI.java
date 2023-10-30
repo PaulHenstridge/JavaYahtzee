@@ -14,8 +14,9 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> diceLabels = new ArrayList<>();
     private List<JLabel> scoreLabels = new ArrayList<>();
     private List<JLabel> totalLabels = new ArrayList<>();
+    private List<JLabel> bonusLabels = new ArrayList<>();
     private JLabel messageLabel;
-    private JPanel dicePanel;
+    private JLabel grandTotalLabel;
 
     private IViewEventHandler eventHandler;
 
@@ -171,6 +172,9 @@ private JPanel createDicePanel(int index) {
         bonusLabel.setForeground(labelColor);
         bonusLabel.setBorder(BorderFactory.createLineBorder(labelColor, 1));
 
+        bonusLabel.putClientProperty("section", section);
+        bonusLabels.add(bonusLabel);
+
         scorePanel.add(bonusLabel, BorderLayout.SOUTH);
 
         panel.add(scorePanel, BorderLayout.EAST);
@@ -182,10 +186,10 @@ private JPanel createDicePanel(int index) {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JPanel scorePanel = new JPanel(new BorderLayout());
-        JLabel scoreLabel = new JLabel("0", SwingConstants.CENTER);
-        scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        grandTotalLabel = new JLabel("0", SwingConstants.CENTER);
+        grandTotalLabel.setFont(new Font("Arial", Font.BOLD, 32));
         scorePanel.add(new JLabel("TOTAL SCORE"), BorderLayout.NORTH);
-        scorePanel.add(scoreLabel, BorderLayout.CENTER);
+        scorePanel.add(grandTotalLabel, BorderLayout.CENTER);
 
         JPanel messagePanel = new JPanel(new BorderLayout());
         messageLabel = new JLabel("hello", SwingConstants.CENTER);
@@ -241,7 +245,22 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
         }
     }
 
+    public void updateGrandTotal(int newGrandTotal){
+        grandTotalLabel.setText(String.valueOf(newGrandTotal));
+    }
 
+    public void updateBonus(YahtzeeEnums.Section section, boolean newState){
+        System.out.println("update bonus called");
+        for(JLabel bonusLabel : bonusLabels){
+            YahtzeeEnums.Section bonusSection = (YahtzeeEnums.Section) bonusLabel.getClientProperty("section");
+            System.out.println("bonusSection: "+ bonusSection);
+            System.out.println(bonusSection == YahtzeeEnums.Section.UPPER);
+            if ( bonusSection == YahtzeeEnums.Section.UPPER){
+                bonusLabel.setText("Yes!");
+                // TODO - change text color etc of bonus
+            }
+        }
+    }
 
 
 

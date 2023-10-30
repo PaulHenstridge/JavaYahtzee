@@ -3,15 +3,22 @@ package model.scoring;
 import enums.YahtzeeEnums;
 
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Map;
 
 public class ScoreKeeper {
 
     private Map<YahtzeeEnums.UpperCategory, Integer> upperScores = new EnumMap<>(YahtzeeEnums.UpperCategory.class);
     private Map<YahtzeeEnums.LowerCategory, Integer> lowerScores = new EnumMap<>(YahtzeeEnums.LowerCategory.class);
-    private int upperScore = 0;
-    private int lowerScore = 0;
+    private EnumSet<YahtzeeEnums.UpperCategory> upperCategoriesRemaining = EnumSet.allOf(YahtzeeEnums.UpperCategory.class);
+    private EnumSet<YahtzeeEnums.LowerCategory> lowerCategoriesRemaining = EnumSet.allOf(YahtzeeEnums.LowerCategory.class);
+
+
     private boolean upperBonus = false;
+    private int lowerBonus;
+    private int upperTotal = 0;
+    private int lowerTotal = 0;
+    private int grandTotal;
 
 
     public UpdateStatus updateScore(int score, YahtzeeEnums.Section section, Enum<?> category) {
@@ -20,7 +27,13 @@ public class ScoreKeeper {
             YahtzeeEnums.UpperCategory upperCategory = (YahtzeeEnums.UpperCategory) category;
             if (!upperScores.containsKey(upperCategory)) {
                 upperScores.put(upperCategory, score);
-                upperScore += score;
+                upperTotal += score;
+                this.checkForUpperBonus();
+                upperCategoriesRemaining.remove(upperCategory);
+                if (upperCategoriesRemaining.isEmpty()){
+                    grandTotal += upperTotal;
+                    //  conditional styles
+                }
                 status.setSuccess(true);
                 checkForUpperBonus();
             } else {
@@ -31,7 +44,12 @@ public class ScoreKeeper {
             YahtzeeEnums.LowerCategory lowerCategory = (YahtzeeEnums.LowerCategory) category;
             if (!lowerScores.containsKey(lowerCategory)) {
                 lowerScores.put((YahtzeeEnums.LowerCategory) category, score);
-                lowerScore += score;
+                lowerTotal += score;
+                lowerCategoriesRemaining.remove(lowerCategory);
+                if (lowerCategoriesRemaining.isEmpty()){
+                    grandTotal += lowerTotal;
+                    //  conditional styles
+                }
                 status.setSuccess(true);
             } else {
                 status.setSuccess(false);
@@ -42,18 +60,22 @@ public class ScoreKeeper {
     }
 
     private void checkForUpperBonus() {
-        if (upperScore >= 63 && !upperBonus) {
+        if (upperTotal >= 3 && !upperBonus) {
             upperBonus = true;
-            upperScore += 35;
+            upperTotal += 35;
         }
     }
 
-    public int getUpperScore() {
-        return upperScore;
+    public int getUpperTotal() {
+        return upperTotal;
     }
 
-    public int getLowerScore() {
-        return lowerScore;
+    public int getLowerTotal() {
+        return lowerTotal;
+    }
+
+    public int getGrandTotal(){
+        return grandTotal;
     }
 
     public boolean isUpperBonus() {

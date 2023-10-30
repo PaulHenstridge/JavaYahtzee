@@ -21,7 +21,10 @@ public interface IGame {
     void unholdDie(int index);
     void toggleHoldButton(int index);
     void clearHolds();
-    int getUpperScore();
-    int getLowerScore();
+    int getUpperTotal();
+    int getLowerTotal();
+    int getGrandTotal();
+    boolean getUpperBonus();
+
     ScoreKeeper getScoreKeeper();
 }

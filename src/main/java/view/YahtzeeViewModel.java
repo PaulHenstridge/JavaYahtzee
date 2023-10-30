@@ -18,8 +18,9 @@ public class YahtzeeViewModel {
     private Integer fives;
     private Integer sixes;
     private boolean upperBonus;
-
     private int upperTotal;
+
+
 
     private Integer threeOfAKind;
     private Integer fourOfAKind;
@@ -222,6 +223,19 @@ public class YahtzeeViewModel {
         this.lowerTotal = newLowerTotal;
         support.firePropertyChange("lowerTotal",prevTotal, lowerTotal);
     }
+    public void setGrandTotal(int newGrandTotal) {
+        int prevTotal = this.getGrandTotal();
+        this.grandTotal = newGrandTotal;
+        support.firePropertyChange("grandTotal",prevTotal, grandTotal);
+    }
+    public void setUpperBonus(boolean upperBonus) {
+        System.out.println("setUpperBonus in V-Model fired");
+        boolean prevState = this.isUpperBonus();
+        this.upperBonus = upperBonus;
+        support.firePropertyChange("upperBonus",prevState, upperBonus);
+    }
+
+
 
 
     private void setOnes(int ones) {
@@ -248,9 +262,7 @@ public class YahtzeeViewModel {
         this.sixes = sixes;
     }
 
-    public void setUpperBonus(boolean upperBonus) {
-        this.upperBonus = upperBonus;
-    }
+
 
 
 
@@ -286,13 +298,6 @@ public class YahtzeeViewModel {
         this.yahtzeeBonus = yahtzeeBonus;
     }
 
-//    public void setLowerTotal(int lowerTotal) {
-//        this.lowerTotal = lowerTotal;
-//    }
-
-//    public void setGrandTotal(int grandTotal) {
-//        this.grandTotal = grandTotal;
-//    }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

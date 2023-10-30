@@ -9,5 +9,7 @@ public interface IGUIUpdater {
     void updateUpperScore(int score, YahtzeeEnums.UpperCategory category);
     void updateLowerScore(int score, YahtzeeEnums.LowerCategory category);
     void updateUpperTotal(int newUpperTotal);
-    void updateLowerTotal(int newTotal);
+    void updateLowerTotal(int newLowerTotal);
+    void updateGrandTotal(int newGrandTotal);
+    void updateBonus(YahtzeeEnums.Section section, boolean newState);
 }

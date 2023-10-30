@@ -36,7 +36,11 @@ public class YahtzeeController implements ViewListener {
                 // get score from model, pass through with enum
                 int score = game.getCategoryScore(YahtzeeEnums.Section.UPPER, category);
                 viewModel.setScoreValues(score, (YahtzeeEnums.UpperCategory) category);
-                viewModel.setUpperTotal(game.getUpperScore());
+                viewModel.setUpperTotal(game.getUpperTotal());
+                this.checkForGrandTotal();
+
+                viewModel.setUpperBonus(game.getUpperBonus());
+
             }
         } else if ( category instanceof YahtzeeEnums.LowerCategory){
             YahtzeeEnums.LowerCategory lowerCategory = (YahtzeeEnums.LowerCategory) category;
@@ -47,7 +51,7 @@ public class YahtzeeController implements ViewListener {
                     if (successTOAK) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                         break;
 
@@ -56,7 +60,7 @@ public class YahtzeeController implements ViewListener {
                     if (successFOAK) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                     break;
 
@@ -65,7 +69,7 @@ public class YahtzeeController implements ViewListener {
                     if (successFH) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                     break;
 
@@ -74,7 +78,7 @@ public class YahtzeeController implements ViewListener {
                     if (successSS) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                     break;
 
@@ -83,7 +87,7 @@ public class YahtzeeController implements ViewListener {
                     if (successLS) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                     break;
                 case YAHTZEE:
@@ -91,7 +95,7 @@ public class YahtzeeController implements ViewListener {
                     if (successYZ) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
                     break;
                 case CHANCE:
@@ -99,10 +103,22 @@ public class YahtzeeController implements ViewListener {
                     if (successCH) {
                         int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
                         viewModel.setScoreValues(score, lowerCategory);
-                        viewModel.setLowerTotal(game.getLowerScore());
+                        viewModel.setLowerTotal(game.getLowerTotal());
                     }
             }
+        }
+        this.checkForGrandTotal();
+    }
 
+    private void checkForGrandTotal() {
+        int grandTot = game.getGrandTotal();
+        if (grandTot > 0) {
+            viewModel.setGrandTotal(grandTot);
         }
     }
+
+    private void setUpperBonus(boolean status){
+        viewModel.setUpperBonus(status);
+    }
 }
+// TODO - move duplicate logic out of the switch statement to the end of the method.

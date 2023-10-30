@@ -31,7 +31,7 @@ public class GameTest {
         when(mockDice.getDiceValues()).thenReturn(Arrays.asList(1, 2, 5,5,5));
         boolean success = game.scoreUpper(YahtzeeEnums.UpperCategory.FIVES);
         assertTrue(success);
-        assertEquals(15,game.getUpperScore());
+        assertEquals(15,game.getUpperTotal());
     }
 
     @Test

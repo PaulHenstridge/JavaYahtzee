@@ -94,11 +94,17 @@ public class Game implements IGame{
         dice.resetHolds();
     }
 
-    public int getUpperScore() {
-        return scoreKeeper.getUpperScore();
+    public int getUpperTotal() {
+        return scoreKeeper.getUpperTotal();
     }
-    public int getLowerScore() {
-        return scoreKeeper.getLowerScore();
+    public int getLowerTotal() {
+        return scoreKeeper.getLowerTotal();
+    }
+    public int getGrandTotal() {
+        return scoreKeeper.getGrandTotal();
+    }
+    public boolean getUpperBonus(){
+        return scoreKeeper.isUpperBonus();
     }
 
     public ScoreKeeper getScoreKeeper() {
