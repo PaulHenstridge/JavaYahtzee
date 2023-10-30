@@ -60,7 +60,7 @@ public class ScoreKeeper {
     }
 
     private void checkForUpperBonus() {
-        if (upperTotal >= 3 && !upperBonus) {
+        if (upperTotal >= 63 && !upperBonus) {
             upperBonus = true;
             upperTotal += 35;
         }

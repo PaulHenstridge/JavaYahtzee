@@ -95,7 +95,7 @@ private JPanel createDicePanel(int index) {
     JLabel diceLabel = new JLabel("?", SwingConstants.CENTER);
     diceLabel.setFont( new Font( "Arial", Font.BOLD, 24));
     diceLabel.setOpaque(true);
-    diceLabel.setBackground(Color.BLUE);
+    diceLabel.setBackground(Color.BLACK);
     diceLabel.setForeground(Color.ORANGE);
 
     diceLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -164,6 +164,7 @@ private JPanel createDicePanel(int index) {
             JLabel scoreLabel = new JLabel("");
             scoreLabel.putClientProperty("category", category);
             scoreLabels.add(scoreLabel);
+            scoreLabel.setHorizontalAlignment(JLabel.CENTER);
             scoreLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             categoryGrid.add(categoryLabel);
             categoryGrid.add(selectButton);
@@ -275,8 +276,19 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
         }
     }
 
-    public void updateHoldButtons(List<Boolean> newList){
-        // TODO - use for loop here, over holdList and newList.
+    public void updateHoldButtons(List<Boolean> holdList){
+        System.out.println(holdList);
+        if (holdList.size() == 5){
+            for(int i = 0; i<=4; i++){
+                if(holdList.get(i)){
+                    holdButtons.get(i).setBackground(Color.BLUE);
+                } else {
+                    holdButtons.get(i).setBackground(new Color(78, 80, 82));
+                }
+            }
+        } else {
+            // error handling
+        }
     }
 
     public static String formatEnumName(String enumName) {

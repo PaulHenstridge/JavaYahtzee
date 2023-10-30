@@ -26,7 +26,7 @@ public class YahtzeeController implements ViewListener {
     public void onHoldButtonClicked(int index) {
         game.toggleHoldButton(index);
         List< Boolean> holdList = game.getHoldList();
-        viewModel.setHolList(holdList);
+        viewModel.setHoldList(holdList);
     }
 
 
@@ -110,6 +110,8 @@ public class YahtzeeController implements ViewListener {
             }
         }
         this.checkForGrandTotal();
+        game.clearHolds();
+        viewModel.setHoldList(game.getHoldList());
     }
 
     private void checkForGrandTotal() {

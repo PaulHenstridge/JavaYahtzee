@@ -237,10 +237,12 @@ public class YahtzeeViewModel {
         support.firePropertyChange("upperBonus",prevState, upperBonus);
     }
 
-    public void setHoldList(List<Boolean> holdList){
+    public void setHoldList(List<Boolean> newHoldList){
+        System.out.println("HOLDLIST passed in"+ newHoldList);
+        System.out.println("HOLDLIST already in viewModel"+ this.getHoldList());
         List<Boolean> prevList = this.getHoldList();
-        this.holdList = holdList;
-        support.firePropertyChange("holdList",prevList, holdList);
+        this.holdList = newHoldList;
+        support.firePropertyChange("holdList",null, holdList);
     }
 
 
