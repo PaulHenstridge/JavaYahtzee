@@ -14,6 +14,7 @@ public class Game implements IGame{
     private Lower lower;
     private Upper upper;
     private ScoreKeeper scoreKeeper;
+    private int turnsRemaining = 3;
 
 
     public Game(DiceController dice, ScoreKeeper scoreKeeper, Upper upper, Lower lower) {
@@ -69,6 +70,15 @@ public class Game implements IGame{
 
     public void rollDice(){
         dice.rollDice();
+        turnsRemaining--;
+    }
+
+    public int getTurnsRemaining() {
+        return turnsRemaining;
+    }
+
+    public void setTurnsRemaining(int turnsRemaining) {
+        this.turnsRemaining = turnsRemaining;
     }
 
     public List<Integer> getCurrentDice(){

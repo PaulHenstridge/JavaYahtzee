@@ -13,6 +13,7 @@ public class YahtzeeViewModel {
     private List<Integer> diceValues = Arrays.asList(1,1,1,1,1);
     private List<Boolean> holdList = Arrays.asList(false, false, false, false, false);
 
+    private boolean hasTurnsRemaining = true;
     private Integer ones;
     private Integer twos;
     private Integer threes;
@@ -245,6 +246,12 @@ public class YahtzeeViewModel {
         support.firePropertyChange("holdList",null, holdList);
     }
 
+    public void setTurnsRemaining(boolean state){
+        this.hasTurnsRemaining = state;
+        if ( !hasTurnsRemaining){
+            support.firePropertyChange("turnsRemaining",null, false);
+        }
+    }
 
     private void setOnes(int ones) {
         this.ones = ones;

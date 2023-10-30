@@ -50,6 +50,10 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
              List<Boolean> newHoldList = (List<Boolean>) evt.getNewValue();
              guiUpdater.updateHoldButtons(newHoldList);
          }
+         if (propName == "turnsRemaining"){
+             boolean turnsRemaining = (boolean) evt.getNewValue();
+//             guiUpdater.outOfRolls();  TODO - alert user in UI, styles...?
+         }
 
         if (evt.getNewValue() instanceof Integer) {
             int score = (Integer) evt.getNewValue();

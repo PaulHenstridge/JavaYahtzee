@@ -18,15 +18,23 @@ public class YahtzeeController implements ViewListener {
     }
     @Override
     public void onRollButtonClicked() {
-        game.rollDice();
-        List<Integer> newDice = game.getCurrentDice();
-        viewModel.setDiceValues(newDice);
+        if (game.getTurnsRemaining() <= 0){
+            viewModel.setTurnsRemaining(false);
+        } else {
+            game.rollDice();
+            List<Integer> newDice = game.getCurrentDice();
+            viewModel.setDiceValues(newDice);
+        }
     }
     @Override
     public void onHoldButtonClicked(int index) {
-        game.toggleHoldButton(index);
-        List< Boolean> holdList = game.getHoldList();
-        viewModel.setHoldList(holdList);
+        if (game.getTurnsRemaining() == 3){
+           // viewModel.something tell user they have to roll before they can hold
+        } else {
+            game.toggleHoldButton(index);
+            List< Boolean> holdList = game.getHoldList();
+            viewModel.setHoldList(holdList);
+        }
     }
 
 
@@ -112,6 +120,7 @@ public class YahtzeeController implements ViewListener {
         this.checkForGrandTotal();
         game.clearHolds();
         viewModel.setHoldList(game.getHoldList());
+        game.setTurnsRemaining(3);
     }
 
     private void checkForGrandTotal() {
