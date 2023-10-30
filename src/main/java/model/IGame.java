@@ -25,6 +25,7 @@ public interface IGame {
     int getLowerTotal();
     int getGrandTotal();
     boolean getUpperBonus();
+    List<Boolean> getHoldList();
 
     ScoreKeeper getScoreKeeper();
 }

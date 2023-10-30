@@ -14,7 +14,7 @@ public class ScoreKeeper {
     private EnumSet<YahtzeeEnums.LowerCategory> lowerCategoriesRemaining = EnumSet.allOf(YahtzeeEnums.LowerCategory.class);
 
 
-    private boolean upperBonus = false;
+    private boolean upperBonus;
     private int lowerBonus;
     private int upperTotal = 0;
     private int lowerTotal = 0;

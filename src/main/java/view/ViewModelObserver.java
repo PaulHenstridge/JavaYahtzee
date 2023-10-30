@@ -46,6 +46,11 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
              guiUpdater.updateBonus(YahtzeeEnums.Section.UPPER, newUpperBonus);
         }
 
+         if (propName == "holdList"){
+             List<Boolean> newHoldList = (List<Boolean>) evt.getNewValue();
+             guiUpdater.updateHoldButtons(newHoldList);
+         }
+
         if (evt.getNewValue() instanceof Integer) {
             int score = (Integer) evt.getNewValue();
             Enum<?> category = null;

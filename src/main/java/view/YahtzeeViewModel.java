@@ -1,5 +1,6 @@
 package view;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import enums.YahtzeeEnums;
 
 import java.beans.PropertyChangeListener;
@@ -10,6 +11,7 @@ import java.util.List;
 public class YahtzeeViewModel {
     private final PropertyChangeSupport support;
     private List<Integer> diceValues = Arrays.asList(1,1,1,1,1);
+    private List<Boolean> holdList = Arrays.asList(false, false, false, false, false);
 
     private Integer ones;
     private Integer twos;
@@ -235,7 +237,11 @@ public class YahtzeeViewModel {
         support.firePropertyChange("upperBonus",prevState, upperBonus);
     }
 
-
+    public void setHoldList(List<Boolean> holdList){
+        List<Boolean> prevList = this.getHoldList();
+        this.holdList = holdList;
+        support.firePropertyChange("holdList",prevList, holdList);
+    }
 
 
     private void setOnes(int ones) {
@@ -262,9 +268,9 @@ public class YahtzeeViewModel {
         this.sixes = sixes;
     }
 
-
-
-
+    public List<Boolean> getHoldList() {
+        return holdList;
+    }
 
     private void setThreeOfAKind(int threeOfAKind) {
         this.threeOfAKind = threeOfAKind;

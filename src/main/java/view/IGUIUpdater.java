@@ -12,4 +12,5 @@ public interface IGUIUpdater {
     void updateLowerTotal(int newLowerTotal);
     void updateGrandTotal(int newGrandTotal);
     void updateBonus(YahtzeeEnums.Section section, boolean newState);
+    void updateHoldButtons(List<Boolean> newList);
 }

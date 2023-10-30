@@ -90,6 +90,10 @@ public class Game implements IGame{
         dice.releaseDice(index);
     }
 
+    public List<Boolean> getHoldList(){
+        return dice.getHoldList();
+    }
+
     public void clearHolds(){
         dice.resetHolds();
     }

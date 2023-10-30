@@ -25,6 +25,8 @@ public class YahtzeeController implements ViewListener {
     @Override
     public void onHoldButtonClicked(int index) {
         game.toggleHoldButton(index);
+        List< Boolean> holdList = game.getHoldList();
+        viewModel.setHolList(holdList);
     }
 
 
