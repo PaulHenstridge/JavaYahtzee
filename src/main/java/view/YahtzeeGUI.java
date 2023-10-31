@@ -22,6 +22,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> bonusLabels = new ArrayList<>();
     private JButton resetButton;
     private JLabel grandTotalLabel;
+    private boolean scoreButtonsClickable;
 
     private IViewEventHandler eventHandler;
 
@@ -56,6 +57,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
             @Override
             public void actionPerformed(ActionEvent e) {
                 eventHandler.rollButtonClicked();
+                scoreButtonsClickable = true;
             }
         });
         rollButton.setFont(new Font("Arial", Font.BOLD, 24));
@@ -141,27 +143,30 @@ private JPanel createDicePanel(int index) {
             selectButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String command = e.getActionCommand();
-                    String[] parts = command.split(":");
-                    Enum<?> scoreCategory = null;
-                    if (parts.length == 2){
-                        if ( "UPPER".equals(parts[0])){
-                            scoreCategory = YahtzeeEnums.UpperCategory.valueOf(parts[1]);
+                    if (scoreButtonsClickable){
+                        String command = e.getActionCommand();
+                        String[] parts = command.split(":");
+                        Enum<?> scoreCategory = null;
+                        if (parts.length == 2){
+                            if ( "UPPER".equals(parts[0])){
+                                scoreCategory = YahtzeeEnums.UpperCategory.valueOf(parts[1]);
+                            }
+                            if ("LOWER".equals(parts[0])){
+                                scoreCategory = YahtzeeEnums.LowerCategory.valueOf(parts[1]);
+                            }
                         }
-                        if ("LOWER".equals(parts[0])){
-                            scoreCategory = YahtzeeEnums.LowerCategory.valueOf(parts[1]);
+                        if (scoreCategory != null) {
+                            eventHandler.scoreButtonClicked(scoreCategory);
+                            selectButton.setForeground(Color.DARK_GRAY);
+                            selectButton.setEnabled(false);
+                            scoreButtonsClickable = false;
+                        } else {
+                            // TODO - handle errors here
                         }
-                    }
-                    if (scoreCategory != null) {
-                        eventHandler.scoreButtonClicked(scoreCategory);
-                        selectButton.setForeground(Color.DARK_GRAY);
-                        selectButton.setEnabled(false);
-                    } else {
-                        // TODO - handle errors here
                     }
                 }
-
             });
+
             JLabel scoreLabel = new JLabel("");
             scoreLabel.setFont(new Font("Arial", Font.PLAIN, 21));
             scoreLabel.putClientProperty("category", category);

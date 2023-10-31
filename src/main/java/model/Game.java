@@ -14,7 +14,7 @@ public class Game implements IGame{
     private Lower lower;
     private Upper upper;
     private ScoreKeeper scoreKeeper;
-    private int turnsRemaining = 12;
+    private int turnsRemaining = 3;
 
 
     public Game(DiceController dice, ScoreKeeper scoreKeeper, Upper upper, Lower lower) {

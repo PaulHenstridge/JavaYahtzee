@@ -134,7 +134,7 @@ public class YahtzeeController implements ViewListener {
 
         game.clearHolds();
         viewModel.setHoldList(game.getHoldList());
-        game.setTurnsRemaining(12);
+        game.setTurnsRemaining(3);
     }
 
     private void checkForGrandTotal() {
