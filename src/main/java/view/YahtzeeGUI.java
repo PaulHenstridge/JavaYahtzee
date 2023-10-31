@@ -20,7 +20,7 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
     private List<JLabel> scoreLabels = new ArrayList<>();
     private List<JLabel> totalLabels = new ArrayList<>();
     private List<JLabel> bonusLabels = new ArrayList<>();
-    private JLabel messageLabel;
+    private JButton resetButton;
     private JLabel grandTotalLabel;
 
     private IViewEventHandler eventHandler;
@@ -55,7 +55,6 @@ public class YahtzeeGUI extends JFrame implements IGUIUpdater {
         rollButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                messageLabel.setText("Dice Rolling");
                 eventHandler.rollButtonClicked();
             }
         });
@@ -134,9 +133,9 @@ private JPanel createDicePanel(int index) {
         JPanel categoryGrid = new JPanel(new GridLayout(categories.length, 3));
 
         for (Enum<?> category : categories) {
-            JLabel categoryLabel = new JLabel(formatEnumName(category.toString()));
+//            JLabel categoryLabel = new JLabel(formatEnumName(category.toString()));
 
-            JButton selectButton = new JButton("Select");
+            JButton selectButton = new JButton(formatEnumName(category.toString()));
             String compositeCommand = section.name() + ":" + category.name();
             selectButton.setActionCommand(compositeCommand);
             selectButton.addActionListener(new ActionListener() {
@@ -155,6 +154,8 @@ private JPanel createDicePanel(int index) {
                     }
                     if (scoreCategory != null) {
                         eventHandler.scoreButtonClicked(scoreCategory);
+                        selectButton.setForeground(Color.DARK_GRAY);
+                        selectButton.setEnabled(false);
                     } else {
                         // TODO - handle errors here
                     }
@@ -162,11 +163,12 @@ private JPanel createDicePanel(int index) {
 
             });
             JLabel scoreLabel = new JLabel("");
+            scoreLabel.setFont(new Font("Arial", Font.PLAIN, 21));
             scoreLabel.putClientProperty("category", category);
             scoreLabels.add(scoreLabel);
             scoreLabel.setHorizontalAlignment(JLabel.CENTER);
             scoreLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-            categoryGrid.add(categoryLabel);
+//            categoryGrid.add(categoryLabel);
             categoryGrid.add(selectButton);
             categoryGrid.add(scoreLabel);
         }
@@ -208,10 +210,10 @@ private JPanel createDicePanel(int index) {
         scorePanel.add(grandTotalLabel, BorderLayout.CENTER);
 
         JPanel messagePanel = new JPanel(new BorderLayout());
-        messageLabel = new JLabel("hello", SwingConstants.CENTER);
-        messageLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        messagePanel.add(new JLabel("Game Messages"), BorderLayout.NORTH);
-        messagePanel.add(messageLabel, BorderLayout.CENTER);
+        resetButton = new JButton("Reset Game");
+        resetButton.setFont(new Font("Arial", Font.PLAIN, 18));
+//        messagePanel.add(new JLabel("Game Messages"), BorderLayout.NORTH);
+        messagePanel.add(resetButton, BorderLayout.CENTER);
 
         bottomPanel.add(scorePanel);
         bottomPanel.add(messagePanel);
@@ -234,6 +236,9 @@ public void updateUpperScore(int score, YahtzeeEnums.UpperCategory category){
     for (JLabel label : scoreLabels){
         if ( category.equals(label.getClientProperty("category"))){
             label.setText(String.valueOf(score));
+            label.setOpaque(true);
+            label.setBackground(Color.ORANGE);
+            label.setForeground(Color.BLACK);
         }
     }
 }
@@ -242,6 +247,9 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
     for (JLabel label : scoreLabels){
         if ( category.equals(label.getClientProperty("category"))){
             label.setText(String.valueOf(score));
+            label.setOpaque(true);
+            label.setBackground(Color.ORANGE);
+            label.setForeground(Color.BLACK);
         }
     }
 }
@@ -278,7 +286,6 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
     }
 
     public void updateHoldButtons(List<Boolean> holdList){
-        System.out.println(holdList);
         if (holdList.size() == 5){
             for(int i = 0; i<=4; i++){
                 if(holdList.get(i)){

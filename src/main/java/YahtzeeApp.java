@@ -9,7 +9,6 @@ import view.*;
 
 public class YahtzeeApp {
 
-
     public static void main(String[] args) {
         // Initialize model components
         DiceController dice = new DiceController(5);
