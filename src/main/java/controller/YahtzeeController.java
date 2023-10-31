@@ -101,13 +101,25 @@ public class YahtzeeController implements ViewListener {
                     }
                     break;
                 case YAHTZEE:
-                    boolean successYZ = game.scoreYahtzee();
-                    if (successYZ) {
-                        int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
-                        viewModel.setScoreValues(score, lowerCategory);
+                    //  if yahtzee already scored, call a yahtzee bonus, +100,else ...
+                    Integer yahtzeeScore = game.getCategoryScore(YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.YAHTZEE);
+                    if ( yahtzeeScore != null && yahtzeeScore >0 ){
+                        // TODO - method on game to add yahtzee bonus points
+                        game.scoreLowerBonus();
+                        // method in viewModel to make UI changes
+                        viewModel.setLowerBonus(true);
                         viewModel.setLowerTotal(game.getLowerTotal());
+
+                    } else {
+                        boolean successYZ = game.scoreYahtzee();
+                        if (successYZ) {
+                            int score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                            viewModel.setScoreValues(score, lowerCategory);
+                            viewModel.setLowerTotal(game.getLowerTotal());
+                        }
                     }
                     break;
+
                 case CHANCE:
                     boolean successCH = game.scoreChance();
                     if (successCH) {
@@ -118,9 +130,11 @@ public class YahtzeeController implements ViewListener {
             }
         }
         this.checkForGrandTotal();
+        viewModel.setLowerBonus(game.getLowerBonus());
+
         game.clearHolds();
         viewModel.setHoldList(game.getHoldList());
-        game.setTurnsRemaining(3);
+        game.setTurnsRemaining(12);
     }
 
     private void checkForGrandTotal() {

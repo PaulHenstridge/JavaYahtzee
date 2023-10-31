@@ -14,7 +14,7 @@ public class Game implements IGame{
     private Lower lower;
     private Upper upper;
     private ScoreKeeper scoreKeeper;
-    private int turnsRemaining = 3;
+    private int turnsRemaining = 12;
 
 
     public Game(DiceController dice, ScoreKeeper scoreKeeper, Upper upper, Lower lower) {
@@ -68,6 +68,12 @@ public class Game implements IGame{
         return status.isSuccess();
     }
 
+    public void scoreLowerBonus(){
+        this.setLowerBonus(true);
+        int currentTotal = scoreKeeper.getLowerTotal();
+        scoreKeeper.setLowerTotal(currentTotal + 100);
+    }
+
     public void rollDice(){
         dice.rollDice();
         turnsRemaining--;
@@ -114,11 +120,20 @@ public class Game implements IGame{
     public int getLowerTotal() {
         return scoreKeeper.getLowerTotal();
     }
+
+
     public int getGrandTotal() {
         return scoreKeeper.getGrandTotal();
     }
     public boolean getUpperBonus(){
         return scoreKeeper.isUpperBonus();
+    }
+    public boolean getLowerBonus(){
+        return scoreKeeper.isLowerBonus();
+    }
+
+    public void setLowerBonus(boolean status){
+        scoreKeeper.setLowerBonus(status);
     }
 
     public ScoreKeeper getScoreKeeper() {

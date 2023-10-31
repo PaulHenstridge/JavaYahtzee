@@ -41,9 +41,13 @@ public class ViewModelObserver implements IViewModelObserver, PropertyChangeList
              guiUpdater.updateGrandTotal(newGrandTotal);
         }
          if (propName == "upperBonus"){
-             System.out.println("VMO fired");
              boolean newUpperBonus = (boolean) evt.getNewValue();
              guiUpdater.updateBonus(YahtzeeEnums.Section.UPPER, newUpperBonus);
+        }
+
+         if (propName == "lowerBonus"){
+             boolean newLowerBonus = (boolean) evt.getNewValue();
+             guiUpdater.updateBonus(YahtzeeEnums.Section.LOWER, newLowerBonus);
         }
 
          if (propName == "holdList"){

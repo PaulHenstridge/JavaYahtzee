@@ -36,6 +36,7 @@ public class YahtzeeViewModel {
 
     private int lowerTotal;
     private int grandTotal;
+    private boolean lowerBonus;
 
 
     public YahtzeeViewModel(){
@@ -232,15 +233,18 @@ public class YahtzeeViewModel {
         support.firePropertyChange("grandTotal",prevTotal, grandTotal);
     }
     public void setUpperBonus(boolean upperBonus) {
-        System.out.println("setUpperBonus in V-Model fired");
         boolean prevState = this.isUpperBonus();
         this.upperBonus = upperBonus;
         support.firePropertyChange("upperBonus",prevState, upperBonus);
     }
 
+    public void setLowerBonus(boolean lowerBonus) {
+        boolean prevState = this.isLowerBonus();
+        this.lowerBonus = lowerBonus;
+        support.firePropertyChange("lowerBonus",prevState, lowerBonus);
+    }
+
     public void setHoldList(List<Boolean> newHoldList){
-        System.out.println("HOLDLIST passed in"+ newHoldList);
-        System.out.println("HOLDLIST already in viewModel"+ this.getHoldList());
         List<Boolean> prevList = this.getHoldList();
         this.holdList = newHoldList;
         support.firePropertyChange("holdList",null, holdList);
@@ -313,6 +317,9 @@ public class YahtzeeViewModel {
         this.yahtzeeBonus = yahtzeeBonus;
     }
 
+    public boolean isLowerBonus() {
+        return lowerBonus;
+    }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

@@ -15,7 +15,7 @@ public class ScoreKeeper {
 
 
     private boolean upperBonus;
-    private int lowerBonus;
+    private boolean lowerBonus;
     private int upperTotal = 0;
     private int lowerTotal = 0;
     private int grandTotal;
@@ -46,6 +46,9 @@ public class ScoreKeeper {
                 lowerScores.put((YahtzeeEnums.LowerCategory) category, score);
                 lowerTotal += score;
                 lowerCategoriesRemaining.remove(lowerCategory);
+
+//                this.checkForLowerBonus();
+
                 if (lowerCategoriesRemaining.isEmpty()){
                     grandTotal += lowerTotal;
                     //  conditional styles
@@ -66,6 +69,12 @@ public class ScoreKeeper {
         }
     }
 
+//    private void checkForLowerBonus(){
+//        if (this.getScore(YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.YAHTZEE) > 0){
+//
+//        }
+//    }
+
     public int getUpperTotal() {
         return upperTotal;
     }
@@ -80,6 +89,18 @@ public class ScoreKeeper {
 
     public boolean isUpperBonus() {
         return upperBonus;
+    }
+
+    public boolean isLowerBonus() {
+        return lowerBonus;
+    }
+
+    public void setLowerTotal(int lowerTotal) {
+        this.lowerTotal = lowerTotal;
+    }
+
+    public void setLowerBonus(boolean lowerBonus) {
+        this.lowerBonus = lowerBonus;
     }
 
     public Integer getScore(YahtzeeEnums.Section section, Enum<?> category) {

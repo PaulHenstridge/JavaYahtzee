@@ -266,11 +266,12 @@ public void updateLowerScore(int score, YahtzeeEnums.LowerCategory category){
     }
 
     public void updateBonus(YahtzeeEnums.Section section, boolean newState){
-        System.out.println("update bonus called");
         for(JLabel bonusLabel : bonusLabels){
             YahtzeeEnums.Section bonusSection = (YahtzeeEnums.Section) bonusLabel.getClientProperty("section");
-            if ( bonusSection == YahtzeeEnums.Section.UPPER){
-                bonusLabel.setText("Yes!");
+            if ( bonusSection == section){
+                bonusLabel.setForeground(Color.GREEN);
+                bonusLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+
                 // TODO - change text color etc of bonus
             }
         }

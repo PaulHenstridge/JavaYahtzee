@@ -28,6 +28,9 @@ public interface IGame {
     List<Boolean> getHoldList();
     int getTurnsRemaining();
     void setTurnsRemaining(int turnsRemaining);
+    boolean getLowerBonus();
+    void setLowerBonus(boolean status);
+    void scoreLowerBonus();
 
     ScoreKeeper getScoreKeeper();
 }
