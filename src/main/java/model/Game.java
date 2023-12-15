@@ -99,12 +99,6 @@ public class Game implements IGame{
         dice.toggleHold(index);
     }
 
-    public void holdDie(int index){
-        dice.holdDice(index);
-    }
-    public void unholdDie(int index){
-        dice.releaseDice(index);
-    }
 
     public List<Boolean> getHoldList(){
         return dice.getHoldList();

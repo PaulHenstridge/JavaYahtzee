@@ -104,7 +104,6 @@ public class YahtzeeController implements ViewListener {
                     //  if yahtzee already scored, call a yahtzee bonus, +100,else ...
                     Integer yahtzeeScore = game.getCategoryScore(YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.YAHTZEE);
                     if ( yahtzeeScore != null && yahtzeeScore >0 ){
-                        // TODO - method on game to add yahtzee bonus points
                         game.scoreLowerBonus();
                         // method in viewModel to make UI changes
                         viewModel.setLowerBonus(true);

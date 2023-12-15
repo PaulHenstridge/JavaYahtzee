@@ -34,12 +34,9 @@ public class YahtzeeApp {
         // set modelObserver as a listener on viewModel
         viewModel.addPropertyChangeListener(modelObserver);
 
-
         // Initialize the controller and pass the Game instance to it
         YahtzeeController controller = new YahtzeeController(game, viewModel);
 
         eventHandler.setViewListener(controller);
-
     }
-
 }

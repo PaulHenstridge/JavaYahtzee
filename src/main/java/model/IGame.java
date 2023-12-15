@@ -17,8 +17,6 @@ public interface IGame {
     void rollDice();
     List<Integer> getCurrentDice();
     Integer getCategoryScore(YahtzeeEnums.Section section, Enum<?> category);
-    void holdDie(int index);
-    void unholdDie(int index);
     void toggleHoldButton(int index);
     void clearHolds();
     int getUpperTotal();

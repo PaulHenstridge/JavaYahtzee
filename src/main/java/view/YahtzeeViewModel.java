@@ -171,7 +171,6 @@ public class YahtzeeViewModel {
             case THREE_OF_A_KIND:
                 Integer oldValTOAK= this.getThreeOfAKind();
                 this.setThreeOfAKind(score);
-                System.out.println("YVM169- old: "+ oldValTOAK + " new: " + this.getThreeOfAKind());
                 support.firePropertyChange(category.name(),oldValTOAK, this.getThreeOfAKind());
 
 
