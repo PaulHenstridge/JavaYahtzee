@@ -29,7 +29,7 @@ public class YahtzeeController implements ViewListener {
     @Override
     public void onHoldButtonClicked(int index) {
         if (game.getTurnsRemaining() == 3){
-           // viewModel.something tell user they have to roll before they can hold
+           // todo - viewModel.something tell user they have to roll before they can hold
         } else {
             game.toggleHoldButton(index);
             List< Boolean> holdList = game.getHoldList();

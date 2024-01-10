@@ -35,6 +35,7 @@ public class YahtzeeApp {
         viewModel.addPropertyChangeListener(modelObserver);
 
         // Initialize the controller and pass the Game instance to it
+        // TODO - initialize either GUI controller or API controller here
         YahtzeeController controller = new YahtzeeController(game, viewModel);
 
         eventHandler.setViewListener(controller);
