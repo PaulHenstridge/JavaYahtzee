@@ -1,9 +1,9 @@
-import model.Game;
-import enums.YahtzeeEnums;
-import model.dice.DiceController;
-import model.scoring.Lower;
-import model.scoring.ScoreKeeper;
-import model.scoring.Upper;
+import com.paulhenstridge.yahtzee.model.Game;
+import com.paulhenstridge.yahtzee.enums.YahtzeeEnums;
+import com.paulhenstridge.yahtzee.model.dice.DiceController;
+import com.paulhenstridge.yahtzee.model.scoring.Lower;
+import com.paulhenstridge.yahtzee.model.scoring.ScoreKeeper;
+import com.paulhenstridge.yahtzee.model.scoring.Upper;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

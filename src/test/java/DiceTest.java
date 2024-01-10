@@ -1,8 +1,8 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import model.dice.Die;
-import model.dice.DiceController;
+import com.paulhenstridge.yahtzee.model.dice.Die;
+import com.paulhenstridge.yahtzee.model.dice.DiceController;
 
 import java.util.List;
 

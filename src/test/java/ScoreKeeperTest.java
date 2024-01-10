@@ -1,6 +1,6 @@
-import enums.YahtzeeEnums;
-import model.scoring.ScoreKeeper;
-import model.scoring.UpdateStatus;
+import com.paulhenstridge.yahtzee.enums.YahtzeeEnums;
+import com.paulhenstridge.yahtzee.model.scoring.ScoreKeeper;
+import com.paulhenstridge.yahtzee.model.scoring.UpdateStatus;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
