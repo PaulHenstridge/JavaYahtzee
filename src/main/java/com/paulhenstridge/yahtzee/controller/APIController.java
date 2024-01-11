@@ -1,5 +1,6 @@
 package com.paulhenstridge.yahtzee.controller;
 
+import com.paulhenstridge.yahtzee.dto.HoldDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class APIController {
         return ResponseEntity.ok("Somebody clicked the roll button!");
     };
     @PostMapping(value = "/hold")
-    public ResponseEntity<?> onHoldButtonClicked(@RequestBody Integer index){
+    public ResponseEntity<?> onHoldButtonClicked(@RequestBody HoldDTO index){
         return ResponseEntity.ok("Somebody clicked hold button no." + index);
     };
     @PostMapping(value = "/score")
