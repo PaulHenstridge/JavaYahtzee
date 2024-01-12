@@ -24,7 +24,7 @@ public class YahtzeeApp {
 
     public static void main(String[] args) {
         // Initialize com.paulhenstridge.yahtzee.model components
-        dice = new DiceController(5);
+        dice = new DiceController();
         scoreKeeper = new ScoreKeeper();
         upper = new Upper();
         lower = new Lower();

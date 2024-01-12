@@ -1,11 +1,13 @@
 package com.paulhenstridge.yahtzee.model.scoring;
 
 import com.paulhenstridge.yahtzee.enums.YahtzeeEnums;
+import org.springframework.stereotype.Service;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 
+@Service
 public class ScoreKeeper {
 
     private Map<YahtzeeEnums.UpperCategory, Integer> upperScores = new EnumMap<>(YahtzeeEnums.UpperCategory.class);

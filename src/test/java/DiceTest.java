@@ -24,7 +24,7 @@ public class DiceTest {
     @Test
     public void TestCanRollFiveDice() {
         // Arrange
-        DiceController YahtzeeDice = new DiceController(5);
+        DiceController YahtzeeDice = new DiceController();
 
         // Act
         for (int i = 0; i < 100; i++) {

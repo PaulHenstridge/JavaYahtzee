@@ -1,7 +1,10 @@
 package com.paulhenstridge.yahtzee.model.scoring;
 
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+@Service
 public class Lower {
 
 

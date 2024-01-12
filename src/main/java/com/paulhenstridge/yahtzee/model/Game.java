@@ -6,9 +6,11 @@ import com.paulhenstridge.yahtzee.model.scoring.Lower;
 import com.paulhenstridge.yahtzee.model.scoring.ScoreKeeper;
 import com.paulhenstridge.yahtzee.model.scoring.UpdateStatus;
 import com.paulhenstridge.yahtzee.model.scoring.Upper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class Game implements IGame{
     private DiceController dice;
     private Lower lower;

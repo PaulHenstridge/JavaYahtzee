@@ -1,13 +1,17 @@
 package com.paulhenstridge.yahtzee.model.dice;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DiceController implements IDiceController {
     private List<Die> diceList = new ArrayList<>();
     private List<Boolean> holdList = new ArrayList<>();
+    private int diceCount = 5;
 
-    public DiceController(int diceCount) {
+    public DiceController() {
         for (int i = 0; i < diceCount; i++) {
             diceList.add(new Die());
             holdList.add(false);
