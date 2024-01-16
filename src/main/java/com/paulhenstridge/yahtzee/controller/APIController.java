@@ -66,13 +66,83 @@ public class APIController {
 
         } else if ("LOWER".equals(sectionStr)) {
             YahtzeeEnums.LowerCategory category = YahtzeeEnums.LowerCategory.valueOf(categoryStr);
+            int score = 0;
+            int lowerTotal = 0;
+
             // Call scoring logic for LowerCategory
+            switch (category){
+                case THREE_OF_A_KIND:
+                    boolean successTOAK = game.scoreThreeOfAKind();
+                    if (successTOAK) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+                    break;
 
-                // send back the score for chosen section, and upper section score
+                case FOUR_OF_A_KIND:
+                    boolean successFOAK = game.scoreFourOfAKind();
+                    if (successFOAK) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+                    break;
 
-                response = ResponseEntity.ok("Somebody clicked the score button, category " + category);
+                case FULL_HOUSE:
+                    boolean successFH = game.scoreFullHouse();
+                    if (successFH) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+                    break;
+
+                case SMALL_STRAIGHT:
+                    boolean successSS = game.scoreSmallStraight();
+                    if (successSS) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+                    break;
+
+                case LARGE_STRAIGHT:
+                    boolean successLS = game.scoreLargeStraight();
+                    if (successLS) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+                    break;
+
+                case YAHTZEE:
+                    //  if yahtzee already scored, call a yahtzee bonus, +100,else ...
+                    Integer yahtzeeScore = game.getCategoryScore(YahtzeeEnums.Section.LOWER, YahtzeeEnums.LowerCategory.YAHTZEE);
+                    if ( yahtzeeScore != null && yahtzeeScore >0 ){
+                        game.scoreLowerBonus();
+                        lowerTotal = game.getLowerTotal();
+
+                    } else {
+                        boolean successYZ = game.scoreYahtzee();
+                        if (successYZ) {
+                            score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                            lowerTotal = game.getLowerTotal();
+                        }
+                    }
+                    break;
+
+                case CHANCE:
+                    boolean successCH = game.scoreChance();
+                    if (successCH) {
+                        score = game.getCategoryScore(YahtzeeEnums.Section.LOWER, category);
+                        lowerTotal = game.getLowerTotal();
+                    }
+            }
+            int upperTotal = game.getUpperTotal();
+            ScoreResponseDTO scoreResponse = new ScoreResponseDTO(category.name(), score, upperTotal, lowerTotal);
+
+            response = ResponseEntity.ok(scoreResponse);
+
         }
         return response;
+
+    }
     };
-}
+
 
