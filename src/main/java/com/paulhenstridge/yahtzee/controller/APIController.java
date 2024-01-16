@@ -1,9 +1,6 @@
 package com.paulhenstridge.yahtzee.controller;
 
-import com.paulhenstridge.yahtzee.dto.HoldDTO;
-import com.paulhenstridge.yahtzee.dto.RollResponseDTO;
-import com.paulhenstridge.yahtzee.dto.ScoreDTO;
-import com.paulhenstridge.yahtzee.dto.ScoreResponseDTO;
+import com.paulhenstridge.yahtzee.dto.*;
 import com.paulhenstridge.yahtzee.enums.YahtzeeEnums;
 import com.paulhenstridge.yahtzee.model.IGame;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +22,6 @@ public class APIController {
     public ResponseEntity<?> onRollButtonClicked() {
         ResponseEntity<?> response = null;
 
-
         if (game.getTurnsRemaining() <= 0) {
             RollResponseDTO rollResponse = new RollResponseDTO(game.getTurnsRemaining(), game.getCurrentDice());
             response = ResponseEntity.ok(rollResponse);
@@ -39,7 +35,12 @@ public class APIController {
     };
     @PostMapping(value = "/hold")
     public ResponseEntity<?> onHoldButtonClicked(@RequestBody HoldDTO holdDTO){
-        return ResponseEntity.ok("Somebody clicked hold button no." + holdDTO.getIndex());
+        int index = holdDTO.getIndex();
+        game.toggleHoldButton(index);
+        List< Boolean> holdList = game.getHoldList();
+        HoldResponseDTO holdResponse = new HoldResponseDTO(holdList);
+
+        return ResponseEntity.ok(holdResponse);
     };
 
     @PostMapping(value = "/score")
